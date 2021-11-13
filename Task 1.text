@@ -1,0 +1,14 @@
+===========================================================
+TASK ONE
+
+Steps:-
+
+1. Create listing Table to store the Listings
+2. Create Category Table to store the Categories
+3. Show these Categories on add listing form
+4. Save listing with categories and other fields.
+5. Add images to Listings ate least 3.
+6. show the listings on homepage
+7. Show Categories on homepage
+8. Create archive page for categories ( when click on any Category it has to show a page where all listings for that caregory will list)
+9. Create Single listing page.
