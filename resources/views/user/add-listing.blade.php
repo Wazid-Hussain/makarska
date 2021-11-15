@@ -17,7 +17,7 @@
                   @include('user.sidebar')
 
                   
-                      <form action="/add-listing" method="post">
+                      <form action="/add-listing" method="post" enctype="multipart/form-data">
                         @csrf
 
 
@@ -32,23 +32,27 @@
                         <div class="row">
                           <div class="col-md-6">
                             <label>Category</label>
-                            <select data-placeholder="All Categories" name="category" class="chosen-select" >
+                            <select data-placeholder="All Categories" name="category_id" class="chosen-select" >
                               <option>Select</option>
-                              <option value="shops">Shops</option>
-                              <option value="hotels">Hotels</option>
-                              <option value="restaurants">Restaurants</option>
-                              <option value="fitness">Fitness</option>
-                              <option value="events">Events</option>
+                              @foreach($categories as $key=>$category)
+                                <option value="{{$key}}">{{$category}}</option>
+                              @endforeach
                             </select>
                           </div>
                           <div class="col-md-6">
                             <label>Keywords <i class="fa fa-key"></i></label>
                             <input type="text" name="keywords" placeholder="Maximum 15, should be separated by commas" value="">
+                            @if($errors->has('keywords'))
+                              <div class="error">{{ $errors->first('keywords') }}</div>
+                            @endif
                           </div>
                         </div>
                         
                         <label>Listing Title <i class="fa fa-briefcase"></i></label>
                         <input type="text" name="title" placeholder="Name of your business" value="">
+                        @if($errors->has('title'))
+                            <div class="error">{{ $errors->first('title') }}</div>
+                        @endif
                       </div>
                       
                     </div>
@@ -118,7 +122,7 @@
                                       here or drop files to upload</span>
                                     <div class="photoUpload-files fl-wrap"></div>
                                   </div>
-                                  <input type="file" class="upload">
+                                  <input type="file" class="upload" name='images[]'>
                                 </div>
                               </div>
                             </div>
@@ -134,7 +138,7 @@
                                       here or drop files to upload</span>
                                     <div class="photoUpload-files fl-wrap"></div>
                                   </div>
-                                  <input type="file" class="upload">
+                                  <input type="file" class="upload"  name='images[]'>
                                 </div>
                               </div>
                             </div>
@@ -150,7 +154,7 @@
                                       here or drop files to upload</span>
                                     <div class="photoUpload-files fl-wrap"></div>
                                   </div>
-                                  <input type="file" class="upload">
+                                  <input type="file" class="upload"  name='images[]'>
                                 </div>
                               </div>
                             </div>

@@ -18,9 +18,7 @@ use App\Http\Controllers\ListingController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('index');
+Route::get('/', [ListingController::class, 'index'])->name('index');
 
 Route::get('/about', function(){
     return view('about');
@@ -57,3 +55,4 @@ Route::post('/add-image', [UserProfileController::class, 'addImage'])->middlewar
 
 Route::get('/add-listing', [ListingController::class, 'create'])->middleware('auth')->name('add-listing');
 Route::post('/add-listing', [ListingController::class, 'store'])->middleware('auth');
+Route::get('/category-listing/{category}', [ListingController::class, 'categoryListing'])->name('category-listing');

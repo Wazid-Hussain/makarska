@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\Category;
+use App\Models\ListingImage;
+use App\Traits\UploadImageTrait;
 
 class ListingController extends Controller
 {
+    use UploadImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,22 @@ class ListingController extends Controller
      */
     public function index()
     {
-        return view('user.add-listing');
+        $listings = Listing::limit(5)->get();
+        $categories = Category::get();
+        return view('home', compact('listings','categories'));
+    }
+
+    /**
+     * Display a listing of the category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function categoryListing(Request $request, $category)
+    {
+        $categories = Category::all();
+        $category = Category::where('title',$category)->first();
+        $listings =Listing::with('images')->where('category_id',$category->id)->get();
+        return view('category-listing', compact('listings','categories','category'));
     }
 
     /**
@@ -24,7 +44,8 @@ class ListingController extends Controller
      */
     public function create()
     {
-        return view('user.add-listing');
+        $categories = Category::all()->pluck('title','id')->toArray();
+        return view('user.add-listing', compact('categories'));
     }
 
     /**
@@ -35,21 +56,32 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        $listing = new Listing;
-        $listing->title = $request->title;
-        $listing->category = $request->category;
-        $listing->keywords = $request->keywords;
-        $listing->address = $request->address;
-        $listing->street = $request->street;
-        $listing->city = $request->city;
-        $listing->zipcode = $request->zipcode;
-        $listing->description = $request->description;
-        $listing->amenities = $request->amenities;
-        $listing->price = $request->price;
+        $this->validate($request, [
+            'title'  => 'required',
+            'keywords'  => 'required',
+            'description'  => 'required',
+            'images'  => 'min:3',
+            'images.*'  => 'mimes:jpeg,jpg,png,gif' 
+        ]);
+        $all = $request->all();    
+        $listing = Listing::create($all);
+        if ($files=$request->file('images')) {
+            $images = array();
+            $path = 'listing_images';
+            foreach($files as $file){
+                $filename = $file->getClientOriginalName();
+                $name = explode('.', $filename)[0];
+                $ext = strtolower($file->getClientOriginalExtension());
+                $filename = $name . '.'.$ext;
+                $file_upload_status = $this->imageUpload($file,$path,$name);
+                if ($file_upload_status) {                    
+                    ListingImage::create(['listing_id'=>$listing->id,'path'=>$path,'image_name'=>$filename]);
+                    $images[] = $filename;
+                }
+            }
+        }
 
-        $listing->save();
-
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('message','Added succesfully!');
         
     }
 
