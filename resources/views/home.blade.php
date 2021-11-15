@@ -88,95 +88,27 @@
               </div>
               <!-- portfolio start -->
               <div class="gallery-items fl-wrap mr-bot spad">
-                <div class="gallery-items-left">
-                  <!-- gallery-item-->
-                  <div class="gallery-item gallery-item-first">
-                    <div class="grid-item-holder">
-                      <div class="listing-item-grid">
-                        <div
-                          class="bg"
-                          data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
-                        ></div>
-                        <div class="listing-counter">Holiday Home</div>
-                        <div class="listing-item-cat">
-                          <h3><a href="listing.html">Home - Classic</a></h3>
-                          <p>Holiday Home</p>
+                @foreach($categories as $key => $category)
+                  <div class="{{$key==0 ? 'gallery-items-left' : 'gallery-items-right'}}">
+                    <!-- gallery-item-->
+                    <div class="gallery-item {{$key==0 ? 'gallery-item-first' : ''}}">
+                      <div class="grid-item-holder">
+                        <div class="listing-item-grid">
+                          <div
+                            class="bg"
+                            data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
+                          ></div>
+                          <div class="listing-counter">{{$category->title}}</div>
+                          <div class="listing-item-cat">
+                            <h3><a href="{{route('category-listing',$category->title)}}">{{$category->title}}</a></h3>
+                            <p>{{$category->title}}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <!-- gallery-item end-->
                   </div>
-                  <!-- gallery-item end-->
-                </div>
-                <div class="gallery-items-right">
-                  <!-- gallery-item-->
-                  <div class="gallery-item">
-                    <div class="grid-item-holder">
-                      <div class="listing-item-grid">
-                        <div
-                          class="bg"
-                          data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
-                        ></div>
-                        <div class="listing-counter">Holiday Home</div>
-                        <div class="listing-item-cat">
-                          <h3><a href="listing.html">Home - Classic</a></h3>
-                          <p>Holiday Home</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- gallery-item end-->
-                  <!-- gallery-item-->
-                  <div class="gallery-item">
-                    <div class="grid-item-holder">
-                      <div class="listing-item-grid">
-                        <div
-                          class="bg"
-                          data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
-                        ></div>
-                        <div class="listing-counter">Holiday Home</div>
-                        <div class="listing-item-cat">
-                          <h3><a href="listing.html">Home - Classic</a></h3>
-                          <p>Holiday Home</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- gallery-item end-->
-                  <!-- gallery-item-->
-                  <div class="gallery-item">
-                    <div class="grid-item-holder">
-                      <div class="listing-item-grid">
-                        <div
-                          class="bg"
-                          data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
-                        ></div>
-                        <div class="listing-counter">Holiday Home</div>
-                        <div class="listing-item-cat">
-                          <h3><a href="listing.html">Home - Classic</a></h3>
-                          <p>Holiday Home</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- gallery-item end-->
-                  <!-- gallery-item-->
-                  <div class="gallery-item">
-                    <div class="grid-item-holder">
-                      <div class="listing-item-grid">
-                        <div
-                          class="bg"
-                          data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
-                        ></div>
-                        <div class="listing-counter">Holiday Home</div>
-                        <div class="listing-item-cat">
-                          <h3><a href="listing.html">Home - Classic</a></h3>
-                          <p>Holiday Home</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- gallery-item end-->
-                </div>
+                @endforeach
               </div>
               <!-- portfolio end -->
               <a
