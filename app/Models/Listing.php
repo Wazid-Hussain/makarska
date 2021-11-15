@@ -11,7 +11,7 @@ class Listing extends Model
     protected $table = 'listings';
     protected $fillable = [
         'title',
-        'category',
+        'category_id',
         'keywords',
         'address',
         'street',
@@ -21,4 +21,8 @@ class Listing extends Model
         'amenities',
         'price',
     ];
+
+    public function images(){
+        $this->hasMany('\App\Models\ListingImage','listing_id');
+    }
 }
