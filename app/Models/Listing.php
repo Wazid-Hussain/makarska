@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\User;
+
 class Listing extends Model
 {
     use HasFactory; 
@@ -23,6 +25,9 @@ class Listing extends Model
     ];
 
     public function images(){
-        $this->hasMany('\App\Models\ListingImage','listing_id');
+       return $this->hasMany('\App\Models\ListingImage','listing_id');
     }
+
+
+    
 }

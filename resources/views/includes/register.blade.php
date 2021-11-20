@@ -18,7 +18,7 @@
                             <div class="tab">
                                 <div id="tab-1" class="tab-content">
                                     <div class="custom-form">
-                                        <form method="post" action="/login" name="registerform">
+                                        <form method="post" action="{{ route('login')}}" name="registerform">
                                             @csrf
                                             <label>Email Address * </label>
                                             <input name="email" type="text"   onClick="this.select()" value="">
@@ -27,15 +27,20 @@
                                             <button type="submit"  class="log-submit-btn"><span>Log In</span></button>
                                             <div class="clearfix"></div>
                                         </form>
-                                        <div class="lost_password">
-                                            <a href="#">Lost Your Password?</a>
-                                        </div>
+                                         @if (Route::has('password.request'))
+                                            
+                                            <div class="lost_password">
+                                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                                {{ __('Forgot your password?') }}
+                                            </a>
+                                            </div>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="tab">
                                     <div id="tab-2" class="tab-content">
                                         <div class="custom-form">
-                                            <form method="post"  action="/register" name="registerform" class="main-register-form" id="main-register-form2">
+                                            <form method="post"  action="{{ route('register') }}" name="registerform" class="main-register-form" id="main-register-form2">
                                                 @csrf
                                                 <label >First Name * </label>
                                                 <input name="name" type="text"   onClick="this.select()" value="">

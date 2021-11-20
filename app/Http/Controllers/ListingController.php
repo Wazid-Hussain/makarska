@@ -7,6 +7,8 @@ use App\Models\Listing;
 use App\Models\Category;
 use App\Models\ListingImage;
 use App\Traits\UploadImageTrait;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -19,8 +21,8 @@ class ListingController extends Controller
      */
     public function index()
     {
-        $listings = Listing::limit(5)->get();
-        $categories = Category::get();
+        $listings = Listing::get();
+        $categories = Category::limit(5)->get();
         return view('home', compact('listings','categories'));
     }
 
@@ -37,6 +39,20 @@ class ListingController extends Controller
         return view('category-listing', compact('listings','categories','category'));
     }
 
+    public function singleListing(Request $request, Listing $listing)
+    {
+        
+        $listings =Listing::with('images')->where('id',$listing->id)->first();        
+        $category = Category::where('id',$listing->category_id)->first();
+        $listingImages = ListingImage::where('listing_id', $listing->id)->get();
+
+        return view('single-listing', compact('listing', 'category', 'listingImages'));
+    }
+
+
+
+
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -56,15 +72,20 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $this->validate($request, [
             'title'  => 'required',
             'keywords'  => 'required',
             'description'  => 'required',
             'images'  => 'min:3',
-            'images.*'  => 'mimes:jpeg,jpg,png,gif' 
+            'images.*'  => 'mimes:jpeg,jpg,png,gif,webp' 
         ]);
-        $all = $request->all();    
-        $listing = Listing::create($all);
+        $all = $request->all();
+        // $listing = Listing::create($all);
+
+        $listing = $request->user()->listings()->create($all);
+        
         if ($files=$request->file('images')) {
             $images = array();
             $path = 'listing_images';
@@ -84,6 +105,15 @@ class ListingController extends Controller
         return redirect('/dashboard')->with('message','Added succesfully!');
         
     }
+
+
+    public function myListings()
+    {
+        $user = Auth::user();
+        $myListings =$user->listings()->get();   
+        return view('user.my-listings', compact('myListings'));  
+    }
+
 
     /**
      * Display the specified resource.

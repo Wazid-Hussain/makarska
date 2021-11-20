@@ -10,38 +10,11 @@
               <div class="nav-holder main-menu">
                 <nav>
                   <ul>
-                    <li>
-                      <a href="index.html" class="act-link"
-                        >Home <i class="fa fa-caret-down"></i
-                      ></a>
-                      <!--second level -->
-                      <ul>
-                        <li><a href="#">Home-1</a></li>
-                        <li><a href="#">Home-2</a></li>
-                        <li><a href="#">Home-3</a></li>
-                        <li><a href="#">Home-4</a></li>
-                        <li><a href="#">Home-5</a></li>
-                      </ul>
-                      <!--second level end-->
-                    </li>
-                    <li>
-                      <a href="#">Listings <i class="fa fa-caret-down"></i></a>
-                      <!--second level -->
-                      <ul>
-                        <li>
-                          <a href="listing-results.html">Listings Search</a>
-                        </li>
-                        <li>
-                          <a href="listing-food.html">Listings Food</a>
-                        </li>
-                      </ul>
-                      <!--second level end-->
-                    </li>
-                    <li>
-                      <a href="blog.html">Blog</a>
-                    </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
+                    <li><a href="index.html" class="act-link">{{__('nav.Home')}}</a></li>
+                    <li><a href="#">{{__('nav.Accommodation')}}</a></li>
+                    <li><a href="#">{{__('nav.About us')}}</a></li>
+                    <li><a href="#">{{__('nav.Contact')}}</a></li>
+                    <li><a href="#">{{__('nav.J Projects')}}</a></li>
                   </ul>
                 </nav>
               </div>
@@ -64,8 +37,6 @@
                     <ul class="hidden">
                       <li><a href="/profile">{{auth()->user()->name}}</a></li>
                       <li><a href="/add-listing"> Add Listing</a></li>
-                      <li><a href="#">  Bookings  </a></li>
-                      <li><a href="#"> Reviews </a></li>
                       <li>
                           <form action="/logout" method="post">
                               @csrf
@@ -79,8 +50,7 @@
                 </div>
                 <ul class="hidden">
                   <li><a href="#" class="show-reg-form modal-open">Sign In</a></li>
-                  <li><a href="#"class="show-reg-form modal-open">Log In</a></li>
-                  <li><a href="#"class="show-reg-form modal-open">Register</a></li>
+                  <li><a href="#" class="show-reg-form modal-open">Register</a></li>
                 </ul>
               @endauth
 

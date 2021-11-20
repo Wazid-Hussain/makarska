@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $table = 'categories';
+    protected $table = 'categories';    
+    protected $fillable = [
+        'title',
+        'image'
+    ];
 
     public function listings(){
-        $this->hasMany('\App\Models\Listing','category_id');
+        return $this->hasMany('\App\Models\Listing','category_id');
     }
+
+
 }

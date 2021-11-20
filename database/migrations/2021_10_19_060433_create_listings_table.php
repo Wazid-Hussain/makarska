@@ -17,6 +17,7 @@ class CreateListingsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('category');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('keywords');
             $table->string('address');
             $table->string('street');

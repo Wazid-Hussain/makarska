@@ -1,13 +1,16 @@
 .logout__btn {
-    color: #50596e;
+    color: #ffffff;
     float: left;
     width: 100%;
     font-weight: 500;
     text-align: left;
-    padding: 6px 15px;
-    background-color: transparent;
+    padding: 8px 20px;
+    background-color: #b13272;
     border: none;
     cursor: pointer;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 10px;
 }
 .logout__btn:hover {
     color: #4db7fe;
@@ -16,4 +19,36 @@
 .save-button {
     background: #4db7fe;
     border-radius: 6px;
+}
+
+.user-profile-menu li a {
+    color: #939393 !important;
+}
+
+.header-inner-right .bar-icon-group ul {
+    background-color: #fafafa;
+    border: 1px solid #b13272;
+    padding: 60px;
+}
+
+.bar-icon-group ul li:nth-child(1) a {
+    font-size: 16px;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+}
+
+.bar-icon-group ul li:nth-child(2) a {
+    position: absolute;
+    left: 20px;
+    top: 45px;
+    font-size: 16px;
+}
+
+.bar-icon-group ul li:nth-child(3) button {
+    width: 110px;
+    position: absolute;
+    left: 20px;
+    top: 70px;
+    font-size: 16px;
 }

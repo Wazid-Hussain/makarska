@@ -20,7 +20,7 @@ class CategorySeeder extends Seeder
                 'title' => 'Shops',
             ],
             [
-                '' => 'Hotels'
+                'title' => 'Hotels'
             ],
             [
                 'title' => 'Restaurants'

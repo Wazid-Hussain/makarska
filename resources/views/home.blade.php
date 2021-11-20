@@ -15,19 +15,19 @@
               <div class="main-search-input-wrap">
                 <div class="main-search-input fl-wrap">
                   <div class="main-search-input-item">
-                    <label for="homes">Type</label>
+                    <label for="homes">{{__('banner.Accommodation type')}}</label>
                     <input
                       type="text"
                       name="homes"
                       id="homes"
-                      placeholder="homes"
+                      placeholder="{{__('banner.Holiday home')}}"
                     />
                   </div>
                   <div
                     class="main-search-input-item check-in"
                     id="autocomplete-container"
                   >
-                    <label for="check-in">Check-in</label>
+                    <label for="check-in">{{__('banner.Check In')}}</label>
                     <input
                       type="date"
                       name="check-in"
@@ -39,7 +39,7 @@
                     class="main-search-input-item check-out"
                     id="autocomplete-container"
                   >
-                    <label for="check-out">Check-out</label>
+                    <label for="check-out">{{__('banner.Check out')}}</label>
                     <input
                       type="date"
                       name="check-out"
@@ -48,12 +48,12 @@
                     />
                   </div>
                   <div class="main-search-input-item guests">
-                    <label for="guests">guests</label>
+                    <label for="guests">{{__('banner.GUESTS')}}</label>
                     <input
-                      type="date"
+                      type="text"
                       name="guests"
                       id="guests"
-                      placeholder="Date?"
+                      placeholder="{{__('banner.Number of people')}}"
                     />
                   </div>
                   <button class="main-search-button">
@@ -65,11 +65,11 @@
           </div>
           <div class="bubble-bg"></div>
           <div class="intro-item">
-            <h3>Not sure where to go? Perfect.</h3>
+            <h3>{{__('banner.No fixed travel period in mind yet? No problem!')}}</h3>
           </div>
           <div class="header-sec-link">
             <div class="container">
-              <a href="#sec2" class="custom-scroll-link">I’m flexible</a>
+              <a href="#sec2" class="custom-scroll-link">{{__('banner.I\'m flexible')}}</a>
             </div>
           </div>
         </section>
@@ -96,7 +96,7 @@
                         <div class="listing-item-grid">
                           <div
                             class="bg"
-                            data-bg="images/pexels-nataliya-vaitkevich-1000.jpg"
+                            data-bg="{{asset('storage/'.$category->image)}}"
                           ></div>
                           <div class="listing-counter">{{$category->title}}</div>
                           <div class="listing-item-cat">
@@ -131,184 +131,51 @@
             <div class="list-carousel fl-wrap card-listing">
               <!--listing-carousel-->
               <div class="listing-carousel fl-wrap">
+                @foreach($listings as $key => $listing)
                 <!--slick-slide-item-->
-                <div class="slick-slide-item">
-                  <!-- listing-item -->
-                  <div class="listing-item">
-                    <article class="geodir-category-listing fl-wrap">
-                      <div class="geodir-category-img">
-                        <img src="images/pexels-monstera-912.jpg" alt="" />
-                        <div class="overlay"></div>
-                      </div>
-                      <div class="geodir-category-content fl-wrap">
-                        <a class="listing-geodir-category" href="listing.html"
-                          >Holiday Home</a
-                        >
-                        <h3>
-                          <a href="listing-single.html">Home - Classic</a>
-                        </h3>
-                        <p>Lorem ipsum gravida bibh vel veilt.</p>
-                        <div class="geodir-category-options fl-wrap">
-                          <div
-                            class="listing-rating card-popup-rainingvis"
-                            data-starrating2="5"
+                  <div class="slick-slide-item">
+                    <!-- listing-item -->
+                    <div class="listing-item">
+                      <article class="geodir-category-listing fl-wrap">
+                        <div class="geodir-category-img">
+                          <img src="images/pexels-monstera-912.jpg" alt="" />
+                          <div class="overlay"></div>
+                        </div>
+                        <div class="geodir-category-content fl-wrap">
+                          <a class="listing-geodir-category" href="listing.html"
+                            >{{$listing->title}}</a
                           >
-                            <span>(5 reviews)</span>
-                          </div>
-                          <div class="geodir-category-location">
-                            <a href="#"
-                              ><i
-                                class="fa fa-map-marker"
-                                aria-hidden="true"
-                              ></i>
-                              Makarska, 17707</a
+                          <h3>
+                            <a href="{{route('single-listing',$listing->id)}}">{{$listing->title}}</a>
+                          </h3>
+                          <p>Lorem ipsum gravida bibh vel veilt.</p>
+                          <div class="geodir-category-options fl-wrap">
+                            <div
+                              class="listing-rating card-popup-rainingvis"
+                              data-starrating2="5"
                             >
-                            <a href="#"
-                              ><i class="fa fa-heart"></i><span>153</span></a
-                            >
+                              <span>(5 reviews)</span>
+                            </div>
+                            <div class="geodir-category-location">
+                              <a href="#"
+                                ><i
+                                  class="fa fa-map-marker"
+                                  aria-hidden="true"
+                                ></i>
+                                Makarska, 17707</a
+                              >
+                              <a href="#"
+                                ><i class="fa fa-heart"></i><span>153</span></a
+                              >
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </article>
+                      </article>
+                    </div>
+                    <!-- listing-item end-->
                   </div>
-                  <!-- listing-item end-->
-                </div>
                 <!--slick-slide-item end-->
-                <!--slick-slide-item-->
-                <div class="slick-slide-item">
-                  <!-- listing-item -->
-                  <div class="listing-item">
-                    <article class="geodir-category-listing fl-wrap">
-                      <div class="geodir-category-img">
-                        <img
-                          src="images/pexels-nataliya-vaitkevich-957.jpg"
-                          alt=""
-                        />
-                        <div class="overlay"></div>
-                      </div>
-                      <div class="geodir-category-content fl-wrap">
-                        <a class="listing-geodir-category" href="listing.html"
-                          >Holiday Home</a
-                        >
-                        <h3>
-                          <a href="listing-single.html">Home - Classic</a>
-                        </h3>
-                        <p>Lorem ipsum gravida bibh vel veilt.</p>
-                        <div class="geodir-category-options fl-wrap">
-                          <div
-                            class="listing-rating card-popup-rainingvis"
-                            data-starrating2="5"
-                          >
-                            <span>(5 reviews)</span>
-                          </div>
-                          <div class="geodir-category-location">
-                            <a href="#"
-                              ><i
-                                class="fa fa-map-marker"
-                                aria-hidden="true"
-                              ></i>
-                              Makarska, 17707</a
-                            >
-                            <a href="#"
-                              ><i class="fa fa-heart"></i><span>153</span></a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <!-- listing-item end-->
-                </div>
-                <!--slick-slide-item end-->
-                <!--slick-slide-item-->
-                <div class="slick-slide-item">
-                  <!-- listing-item -->
-                  <div class="listing-item">
-                    <article class="geodir-category-listing fl-wrap">
-                      <div class="geodir-category-img">
-                        <img
-                          src="images/pexels-valeria-boltneva-2400.jpg"
-                          alt=""
-                        />
-                        <div class="overlay"></div>
-                      </div>
-                      <div class="geodir-category-content fl-wrap">
-                        <a class="listing-geodir-category" href="listing.html"
-                          >Holiday Home</a
-                        >
-                        <h3>
-                          <a href="listing-single.html">Home - Classic</a>
-                        </h3>
-                        <p>Lorem ipsum gravida bibh vel veilt.</p>
-                        <div class="geodir-category-options fl-wrap">
-                          <div
-                            class="listing-rating card-popup-rainingvis"
-                            data-starrating2="5"
-                          >
-                            <span>(5 reviews)</span>
-                          </div>
-                          <div class="geodir-category-location">
-                            <a href="#"
-                              ><i
-                                class="fa fa-map-marker"
-                                aria-hidden="true"
-                              ></i>
-                              Makarska, 17707</a
-                            >
-                            <a href="#"
-                              ><i class="fa fa-heart"></i><span>153</span></a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <!-- listing-item end-->
-                </div>
-                <!--slick-slide-item end-->
-                <!--slick-slide-item-->
-                <div class="slick-slide-item">
-                  <!-- listing-item -->
-                  <div class="listing-item">
-                    <article class="geodir-category-listing fl-wrap">
-                      <div class="geodir-category-img">
-                        <img src="images/pexels-jaxson-bryden-979.jpg" alt="" />
-                        <div class="overlay"></div>
-                      </div>
-                      <div class="geodir-category-content fl-wrap">
-                        <a class="listing-geodir-category" href="listing.html"
-                          >Holiday Home</a
-                        >
-                        <h3>
-                          <a href="listing-single.html">Home - Classic</a>
-                        </h3>
-                        <p>Lorem ipsum gravida bibh vel veilt.</p>
-                        <div class="geodir-category-options fl-wrap">
-                          <div
-                            class="listing-rating card-popup-rainingvis"
-                            data-starrating2="5"
-                          >
-                            <span>(5 reviews)</span>
-                          </div>
-                          <div class="geodir-category-location">
-                            <a href="#"
-                              ><i
-                                class="fa fa-map-marker"
-                                aria-hidden="true"
-                              ></i>
-                              Makarska, 17707</a
-                            >
-                            <a href="#"
-                              ><i class="fa fa-heart"></i><span>153</span></a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <!-- listing-item end-->
-                </div>
-                <!--slick-slide-item end-->
+                @endforeach
               </div>
               <!--listing-carousel end-->
               <div class="swiper-button-prev sw-btn">
