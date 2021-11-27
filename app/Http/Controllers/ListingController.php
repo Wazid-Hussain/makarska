@@ -40,8 +40,7 @@ class ListingController extends Controller
     }
 
     public function singleListing(Request $request, Listing $listing)
-    {
-        
+    {        
         $listings =Listing::with('images')->where('id',$listing->id)->first();        
         $category = Category::where('id',$listing->category_id)->first();
         $listingImages = ListingImage::where('listing_id', $listing->id)->get();

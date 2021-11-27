@@ -563,7 +563,7 @@ function initCitybook() {
       this.output.html(value);
     },
   });
-  $('input.datepicker').dateDropper();
+  // $('input.datepicker').dateDropper();
   $('input.timepicker').timeDropper({
     setCurrentTime: false,
     meridians: true,

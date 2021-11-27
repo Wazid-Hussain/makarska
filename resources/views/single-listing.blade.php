@@ -286,24 +286,24 @@
                                         <fieldset>
                                             
                                             <div class="row">
-                                                <div class="col-md-6">      
-                                                    <span>Check In Date :</span>                         
+                                                <div class="col-md-12">      
+                                                    <span>Check In / check out Date :</span>                         
                                                     <label><i class="fa fa-calendar-check-o"></i>  </label>
-                                                    <input type="text" placeholder="Date" class="datepicker"   data-large-mode="true" data-large-default="true" value=""/>
+                                                    <input id="check-in" type="text" placeholder="check in date" class="datepicker"   data-large-mode="true" data-large-default="true" value=""/>
                                                 </div>
                                                 
-                                                <div class="col-md-6"> 
+                                                {{-- <div class="col-md-6"> 
                                                     <span>Check Out Date :</span>                                
                                                     <label><i class="fa fa-calendar-check-o"></i>  </label>
-                                                    <input type="text" placeholder="Date" class="datepicker"   data-large-mode="true" data-large-default="true" value=""/>
-                                                </div>
+                                                    <input id="check-out" type="text" placeholder="check out date" class="datepicker"   data-large-mode="true" data-large-default="true" value=""/>
+                                                </div> --}}
                                             </div>
 
                                             <div class="quantity fl-wrap">
                                                 <span><i class="fa fa-user-plus"></i>Adults : </span>
                                                 <div class="quantity-item">
                                                     <input type="button" value="-" class="minus">
-                                                    <input type="text"    name="quantity"   title="Qty" class="qty" min="1" max="3" step="1" value="1">
+                                                    <input type="text" id="adults"   name="quantity"   title="Qty" class="qty" min="1" max="3" step="1" value="1">
                                                     <input type="button" value="+" class="plus">
                                                 </div>
                                             </div>
@@ -312,11 +312,21 @@
                                                 <span><i class="fa fa-user-plus"></i>Children : </span>
                                                 <div class="quantity-item">
                                                     <input type="button" value="-" class="minus">
-                                                    <input type="text"    name="quantity"   title="Qty" class="qty" min="0" max="3" step="1" value="0">
+                                                    <input type="text" id="children"   name="quantity"   title="Qty" class="qty" min="0" max="3" step="1" value="0">
                                                     <input type="button" value="+" class="plus">
                                                 </div>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="quantity fl-wrap">
+                                                        <div class="quantity-item">
+                                                            <span id="price" data-price="{{$listing->price}}">₹{{$listing->price}} x</span><span id="night-count"> </span> <span id="total-amount"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                             <textarea cols="40" rows="3" placeholder="Additional Information:"></textarea>
                                         </fieldset>
                                         <button class="btn  big-btn  color-bg flat-btn book-btn">Book Now<i class="fa fa-angle-right"></i></button>
@@ -445,3 +455,69 @@
 <!--  content end  --> 
     
 @endsection
+@push('script')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script>
+        $(document).ready(function(){
+            //$('#check-in').daterangepicker();
+            var startDate = moment().format("MM/DD/YYYY");
+            var endDate = moment().add(1, 'days').format("MM/DD/YYYY");
+            var adults = 1;var children =0;
+
+            function setAdultsAndChildren(){
+                adults = parseInt($('#adults').val());
+                children = parseInt($('#children').val());
+            }
+
+            var adults = parseInt($('#adults').val());
+            var children = parseInt($('#children').val());
+            $(function() {
+                $('#check-in').daterangepicker({
+                    opens: 'left',
+                    startDate: moment().format("MM/DD/YYYY"),
+                    minDate: moment().format("MM/DD/YYYY"),
+                    endDate: moment().add(1, 'days').format("MM/DD/YYYY")
+                }, function(start, end, label) {
+                    startDate = start.format("MM/DD/YYYY");
+                    endDate = end.format("MM/DD/YYYY");
+                    showPriceWidget();
+                });
+            });
+
+            function totalAmount(){
+                personCount = adults +  children;
+                price = parseInt($('#price').data('price'));
+                nightsCount = parseInt(countNights());
+                console.log(price,nightsCount,price * nightsCount * personCount);
+                return price * nightsCount * personCount;
+            }
+
+            function countNights(){
+                var start = startDate;
+                var end = endDate;
+
+                var startDay = new Date(start);
+                var endDay = new Date(end);
+                var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+                var millisBetween = endDay.getTime() - startDay.getTime();
+                var days = millisBetween / millisecondsPerDay;
+
+                return Math.floor(days);
+            }
+
+            function showPriceWidget(){
+                $('#night-count').text(countNights() + ' nights');
+                $('#total-amount').text('₹ ' + totalAmount());
+            }
+            showPriceWidget();
+
+            $('.qty').on('change',function(){
+                setAdultsAndChildren();
+                showPriceWidget();
+            });
+        });
+    </script>
+@endpush
