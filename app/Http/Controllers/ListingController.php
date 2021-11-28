@@ -96,7 +96,7 @@ class ListingController extends Controller
         ]);
         $all = $request->all();
         // $listing = Listing::create($all);
-
+        $all['created_by'] => Auth::user()->id;
         $listing = $request->user()->listings()->create($all);
         
         if ($files=$request->file('images')) {

@@ -22,6 +22,7 @@ class Listing extends Model
         'description',
         'amenities',
         'price',
+        'created_by',
     ];
 
     public function images(){

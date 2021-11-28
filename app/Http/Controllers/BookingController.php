@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\User;
+use Auth;
 
 class BookingController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display bookings
      * @return \Illuminate\Http\Response
      */
     public function index()
     {        
-        $bookings = Booking::get();
+        $bookings = Booking::whereHas('listing', function($query){
+            $query->where('created_by',Auth::user()->id);
+        })->get();
         return view('admin/bookings/index', compact('bookings'));
     }
 
