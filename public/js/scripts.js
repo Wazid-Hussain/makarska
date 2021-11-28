@@ -657,10 +657,10 @@ function initCitybook() {
   $('.booking-modal-close , .bmw-overlay').on('click', function () {
     hideBookingForm();
   });
-  $('.book-btn').on('click', function (e) {
-    e.preventDefault();
-    showBookingForm();
-  });
+  // $('.book-btn').on('click', function (e) {
+  //   e.preventDefault();
+  //   showBookingForm();
+  // });
 
   var current_fs, next_fs, previous_fs;
   var left, opacity, scale;

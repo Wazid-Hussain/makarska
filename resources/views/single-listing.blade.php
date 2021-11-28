@@ -281,17 +281,27 @@
                                 <h3>Book Now : </h3>
                             </div>
                             <div class="box-widget opening-hours">
-                                <div class="box-widget-content">
-                                    <form   class="add-comment custom-form">
+                                <div class="box-widget-content"> 
+                                    <form   class="add-comment custom-form" method="post" action="{{route('add-booking')}}">
+                                        @csrf
+
                                         <fieldset>
-                                            
+                                        @if(session()->has('message'))
+                                            <div class="alert alert-success side-alert">
+                                                <div class="w3-theme-border">
+                                                {{ session()->pull('message') }}
+                                                </div>
+                                            </div>
+                                        @endif
+                                            <input type="hidden" name="listing_id" value="{{$listing->id}}">
                                             <div class="row">
                                                 <div class="col-md-12">      
                                                     <span>Check In / check out Date :</span>                         
                                                     <label><i class="fa fa-calendar-check-o"></i>  </label>
                                                     <input id="check-in" type="text" placeholder="check in date" class="datepicker"   data-large-mode="true" data-large-default="true" value=""/>
                                                 </div>
-                                                
+                                                <input id="input-start-from" type="hidden" name="start_from" value=''>
+                                                <input id="input-end-to" type="hidden" name="end_to" value=''>
                                                 {{-- <div class="col-md-6"> 
                                                     <span>Check Out Date :</span>                                
                                                     <label><i class="fa fa-calendar-check-o"></i>  </label>
@@ -303,7 +313,7 @@
                                                 <span><i class="fa fa-user-plus"></i>Adults : </span>
                                                 <div class="quantity-item">
                                                     <input type="button" value="-" class="minus">
-                                                    <input type="text" id="adults"   name="quantity"   title="Qty" class="qty" min="1" max="3" step="1" value="1">
+                                                    <input type="text" id="adults"   name="adults"   title="Qty" class="qty" min="1" max="3" step="1" value="1">
                                                     <input type="button" value="+" class="plus">
                                                 </div>
                                             </div>
@@ -312,7 +322,7 @@
                                                 <span><i class="fa fa-user-plus"></i>Children : </span>
                                                 <div class="quantity-item">
                                                     <input type="button" value="-" class="minus">
-                                                    <input type="text" id="children"   name="quantity"   title="Qty" class="qty" min="0" max="3" step="1" value="0">
+                                                    <input type="text" id="children"   name="children"   title="Qty" class="qty" min="0" max="3" step="1" value="0">
                                                     <input type="button" value="+" class="plus">
                                                 </div>
                                             </div>
@@ -322,14 +332,15 @@
                                                     <div class="quantity fl-wrap">
                                                         <div class="quantity-item">
                                                             <span id="price" data-price="{{$listing->price}}">₹{{$listing->price}} x</span><span id="night-count"> </span> <span id="total-amount"></span>
+                                                            <input id="input-total-amount" type="hidden" name="total_price" value="">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             
-                                            <textarea cols="40" rows="3" placeholder="Additional Information:"></textarea>
+                                            <textarea cols="40" rows="3" name="additional_info" placeholder="Additional Information:"></textarea>
                                         </fieldset>
-                                        <button class="btn  big-btn  color-bg flat-btn book-btn">Book Now<i class="fa fa-angle-right"></i></button>
+                                        <button type="submit" class="btn  big-btn  color-bg flat-btn book-btn">Book Now<i class="fa fa-angle-right"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -471,17 +482,45 @@
                 children = parseInt($('#children').val());
             }
 
+            function setInputDates(){
+                $('#input-start-from').val(startDate);
+                $('#input-end-to').val(endDate);
+            }
+            setInputDates();
             var adults = parseInt($('#adults').val());
             var children = parseInt($('#children').val());
+            var bookedDates = @json($bookedDates);
+            
             $(function() {
                 $('#check-in').daterangepicker({
                     opens: 'left',
                     startDate: moment().format("MM/DD/YYYY"),
                     minDate: moment().format("MM/DD/YYYY"),
-                    endDate: moment().add(1, 'days').format("MM/DD/YYYY")
+                    endDate: moment().add(1, 'days').format("MM/DD/YYYY"),
+                    isInvalidDate: function(arg){
+
+                        // Prepare the date comparision
+                        var thisMonth = arg._d.getMonth()+1;   // Months are 0 based
+                        if (thisMonth<10){
+                            thisMonth = "0"+thisMonth; // Leading 0
+                        }
+                        var thisDate = arg._d.getDate();
+                        if (thisDate<10){
+                            thisDate = "0"+thisDate; // Leading 0
+                        }
+                        var thisYear = arg._d.getYear()+1900;   // Years are 1900 based
+
+                        var thisCompare = thisMonth +"/"+ thisDate +"/"+ thisYear;
+                        console.log(thisCompare);
+
+                        if($.inArray(thisCompare,bookedDates)!=-1){
+                            return true;
+                        }
+                    }
                 }, function(start, end, label) {
                     startDate = start.format("MM/DD/YYYY");
                     endDate = end.format("MM/DD/YYYY");
+                    setInputDates();
                     showPriceWidget();
                 });
             });
@@ -511,6 +550,7 @@
             function showPriceWidget(){
                 $('#night-count').text(countNights() + ' nights');
                 $('#total-amount').text('₹ ' + totalAmount());
+                $('#input-total-amount').val(totalAmount());
             }
             showPriceWidget();
 

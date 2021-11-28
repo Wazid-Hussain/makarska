@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
 /*
@@ -60,6 +61,7 @@ Route::get('/my-listings', [ListingController::class, 'myListings'])->middleware
 
 Route::get('/category-listing/{category}', [ListingController::class, 'categoryListing'])->name('category-listing');
 Route::get('/single-listing/{listing}', [ListingController::class, 'singleListing'])->name('single-listing');
+Route::post('/booking', [BookingController::class, 'store'])->name('add-booking');
 
 
 

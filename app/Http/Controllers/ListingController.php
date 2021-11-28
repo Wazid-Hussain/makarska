@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use App\Models\Listing;
 use App\Models\Category;
+use App\Models\Booking;
 use App\Models\ListingImage;
 use App\Traits\UploadImageTrait;
 use App\Models\User;
@@ -44,8 +47,19 @@ class ListingController extends Controller
         $listings =Listing::with('images')->where('id',$listing->id)->first();        
         $category = Category::where('id',$listing->category_id)->first();
         $listingImages = ListingImage::where('listing_id', $listing->id)->get();
-
-        return view('single-listing', compact('listing', 'category', 'listingImages'));
+        
+        $bookedDates = [];
+        $bookings = Booking::where('listing_id',$listing->id)
+                        ->get();
+        foreach($bookings as $booking) {    
+            $period = CarbonPeriod::create($booking->start_from, $booking->end_to);
+            foreach ($period as $date) {
+                if(! in_array($date->format('m/d/Y'), $bookedDates)) {
+                    $bookedDates[] = $date->format('m/d/Y');
+                }
+            }
+        }
+        return view('single-listing', compact('listing', 'category', 'listingImages', 'bookedDates'));
     }
 
 
