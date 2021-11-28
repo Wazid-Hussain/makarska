@@ -20,5 +20,12 @@ class Booking extends Model
         'status',
         'additional_info',
     ];
-    
+
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
+
+    public function listing(){
+        return $this->belongsTo('App\Models\Listing','listing_id');
+    }
 }

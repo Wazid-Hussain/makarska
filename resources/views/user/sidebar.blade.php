@@ -17,7 +17,7 @@
                 <h3>Listings</h3>
                 <ul>
                     <li><a href="dashboard-listing-table.html"><i class="fa fa-th-list"></i> My listigs  </a></li>
-                    <li><a href="dashboard-bookings.html"> <i class="fa fa-calendar-check-o"></i> Bookings <span>2</span></a></li>
+                    <li><a href="{{route('dashboard-bookings')}}"> <i class="fa fa-calendar-check-o"></i> Bookings <span>2</span></a></li>
                     <li><a href="dashboard-review.html"><i class="fa fa-comments-o"></i> Reviews </a></li>
                     <li><a href="{{route('add-listing')}}"><i class="fa fa-plus-square-o"></i> Add New</a></li>
                 </ul>

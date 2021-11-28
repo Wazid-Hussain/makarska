@@ -49,6 +49,10 @@ Route::get('/dashboard', function(){
     return view('user.dashboard');
 })->middleware('auth')->name('dashboard');
 
+
+ Route::get('dashboard/bookings', [BookingController::class, 'index'])->middleware('auth')->name('dashboard-bookings');    
+
+
 Route::get('/profile', [UserProfileController::class, 'create'])->middleware('auth');
 Route::post('/edit-profile', [UserProfileController::class, 'update'])->middleware('auth');
 Route::post('/add-image', [UserProfileController::class, 'addImage'])->middleware('auth');

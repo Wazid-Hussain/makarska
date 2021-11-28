@@ -8,6 +8,17 @@ use App\Models\User;
 
 class BookingController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {        
+        $bookings = Booking::get();
+        return view('admin/bookings/index', compact('bookings'));
+    }
+
     public function store(Request $request){
         $all = $request->all();
         $all['user_id'] = User::first()->id;
