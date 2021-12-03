@@ -1,0 +1,104 @@
+.logout__btn {
+    color: #ffffff;
+    float: left;
+    width: 100%;
+    font-weight: 500;
+    text-align: left;
+    padding: 8px 20px;
+    background-color: #b13272;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.logout__btn:hover {
+    color: #4db7fe;
+}
+
+.save-button {
+    background: #4db7fe;
+    border-radius: 6px;
+}
+
+.user-profile-menu li a {
+    color: #939393 !important;
+
+}
+
+.header-inner-right .bar-icon-group ul {
+    background-color: #fafafa;
+    border: 1px solid #b13272;
+    padding: 60px;
+}
+
+.bar-icon-group ul li:nth-child(1) a {
+    font-size: 16px;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+}
+
+.bar-icon-group ul li:nth-child(2) a {
+    font-size: 16px;
+    position: absolute;
+    left: 20px;
+    top: 45px;
+}
+
+.bar-icon-group ul li:nth-child(3) a {
+    font-size: 16px;
+    position: absolute;
+    left: 20px;
+    top: 75px;
+}
+
+.bar-icon-group ul li:nth-child(3) button {
+    font-size: 16px;
+    width: 110px;
+    position: absolute;
+    left: 20px;
+    top: 70px;
+}
+
+.middle {
+  width: 100%;
+  text-align: center;
+}
+
+.middle input[type=radio] {
+  display: none;
+}
+.middle input[type=radio]:checked + .box {
+  background-color: #b13272;
+}
+.middle input[type=radio]:checked + .box span {
+  color: white;
+}
+
+.middle .box {
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+  transition: all 250ms ease;
+  will-change: transition;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+.middle .box:active {
+  /*transform: translateY(10px);*/
+}
+.middle .box span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: all 300ms ease;
+  font-size: 1.5em;
+  line-height:150px;
+  user-select: none;
+  color: #b13272;
+}
