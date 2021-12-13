@@ -14,6 +14,8 @@ use Illuminate\Validation\Rules;
 use Session;
 use App\Models\Booking;
 
+use Stripe;
+
 class PaymentController extends Controller
 {
     public function index(Request $request){        
@@ -78,9 +80,29 @@ class PaymentController extends Controller
         return view('payment.payment');
     } // Method end
 
-    public function paymentStep(){
-        return view('payment.payment');
+
+    public function paymentStep(Request $request){
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => Session('formdata.0.total_price') * 100,
+                "currency" => "inr",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from Makarska Exclusive.",
+                "metadata" => ["boking_id" => Session::get('current_id.0'),
+                                "user_name" => $request->name,
+                                
+                ]
+        ]);
+        Session::flush();   
+        Session::flash('success', 'Payment successful!');           
+        return redirect()->route('thankyouStep');
     }
+    
+
+
+
+
+
 
     public function thankyouStep(){
         return view('payment.thanks');

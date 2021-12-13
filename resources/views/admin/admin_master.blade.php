@@ -281,6 +281,16 @@
                               <li><a href="{{route('category.index')}}">All Categories</a></li>
                             </ul>
                       </li>
+                      <li class="single-nav-wrapper">
+                          <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                            <span class="left-icon"><i class="fas fa-table"></i></span>
+                              <span class="menu-text">Amenities</span>
+                          </a>
+                            <ul class="dashboard-menu">
+                              <li><a href="{{route('amenity.create')}}">Add Amenity</a></li>
+                              <li><a href="{{route('amenity.index')}}">All Amenities</a></li>
+                            </ul>
+                      </li>
                     </ul>
               </nav>
             </aside><!-- /sidebar Area-->

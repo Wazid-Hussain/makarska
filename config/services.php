@@ -36,4 +36,8 @@ return [
         'redirect' => 'https://dev.makarska-exklusiv.com/sign-in/facebook/redirect',
       ], 
 
+      'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+    ],
+
 ];

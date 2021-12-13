@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Models\Listing;
+use App\Models\Amenity;
 use App\Models\Category;
 use App\Models\Booking;
 use App\Models\ListingImage;
 use App\Traits\UploadImageTrait;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
+
+use Phpfastcache\Helper\Psr16Adapter;
 
 class ListingController extends Controller
 {
@@ -24,9 +28,25 @@ class ListingController extends Controller
      */
     public function index()
     {
+            $instagram = \InstagramScraper\Instagram::withCredentials(new \GuzzleHttp\Client(), 'wazid_hussain_92', 'Pass4{Wazid@Insta}', new Psr16Adapter('Files'));
+            $instagram->login(); // will use cached session if you want to force login $instagram->login(true)
+            $instagram->saveSession();  //DO NOT forget this in order to save the session, otherwise have no sense
+            $account = $instagram->getAccount('wazid_hussain_92');
+            $accountMedias = $account->getMedias(); 
+            foreach ($accountMedias as $key  => $accountMedia) {
+                if ($key === 6) {
+                    break;
+                }
+                $images[$key] = str_replace("&amp;","&", $accountMedia->getimageHighResolutionUrl());     
+                $path = $images[$key];
+                $imageName = $key.'.png';
+                $img = public_path('insta/images/') . $imageName;
+                file_put_contents($img, file_get_contents($path));
+            }
+
         $listings = Listing::get();
         $categories = Category::limit(5)->get();
-        return view('home', compact('listings','categories'));
+        return view('home', compact('listings','categories','images'));
     }
 
     /**
@@ -66,6 +86,11 @@ class ListingController extends Controller
                 }
             }
         }
+        
+        // $amenities = $listings->amenities->find($listing->id);
+
+        // dd($amenities);
+
         return view('single-listing', compact('listing', 'category', 'listingImages', 'bookedDates','user','userListings'));
     }
 
@@ -80,8 +105,10 @@ class ListingController extends Controller
      */
     public function create()
     {
+        
+        $amenities = Amenity::all();
         $categories = Category::all()->pluck('title','id')->toArray();
-        return view('user.add-listing', compact('categories'));
+        return view('user.add-listing', compact('categories', 'amenities'));
     }
 
     /**
@@ -102,8 +129,16 @@ class ListingController extends Controller
             'images.*'  => 'mimes:jpeg,jpg,png,gif,webp' 
         ]);
         $all = $request->all();
+
+        $amenities = $request->input('amenities');
+        foreach($amenities as $amenity){
+            $all['amenities'] = $amenity;
+        }
+
+
+        $all['category_id'] = $request->category;
         // $listing = Listing::create($all);
-        $all['created_by'] = Auth::user()->id;
+        // $all['created_by'] = Auth::user()->id;
         $listing = $request->user()->listings()->create($all);
         
         if ($files=$request->file('images')) {
@@ -120,6 +155,10 @@ class ListingController extends Controller
                     $images[] = $filename;
                 }
             }
+        }
+
+        if ($request->amenities) {
+            $listing->amenities()->attach($request->amenities);
         }
 
         return redirect('/dashboard')->with('message','Added succesfully!'); 

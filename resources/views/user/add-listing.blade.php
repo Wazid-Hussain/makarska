@@ -27,9 +27,10 @@
                             <div class="col-md-12">
                                 <h4>Select Category</h4>
                                 <div class="middle">
-                                    @foreach($categories as $category)
+                                    @foreach($categories as $key => $category)
+                                
                                     <label>
-                                      <input type="radio" name="category"/>
+                                      <input type="radio" name="category" value="{{$key}}"/>
                                       <div class="box">
                                         <span>{{$category}}</span>
                                       </div>
@@ -131,68 +132,15 @@
                             <div class="col-md-12">
                                 <div class="fl-wrap filter-tags">
                                   <h4>What this place offers</h4>
+                                  
                                   <div>
                                     <p>Bathroom</p>
-                                    <div class="input-item">
-                                      <input id="check-a" type="checkbox" name="amenities" value="Hot water">
-                                      <label for="check-a">Hot water</label>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <p>Bedroom and laundry</p>
-                                    <div class="input-item">
-                                        <input id="check-b" type="checkbox" name="amenities" value="Washing machine">
-                                        <label for="check-b">Washing machine</label>
-                                    </div>
-                                    <div class="input-item">
-                                        <input id="check-c" type="checkbox" name="amenities" value="Essentials">
-                                        <label for="check-c">Essentials
-                                            <span>Towels, bed sheets, soap and toilet paper</span>
-                                        </label>
-                                    </div>
-                                    <div class="input-item">
-                                        <input id="check-d" type="checkbox" name="amenities" value="Iron">
-                                        <label for="check-d">Iron</label>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <p>Entertainment</p>
-                                    <div class="input-item">
-                                        <input id="check-e" type="checkbox" name="amenities" value="TV">
-                                        <label for="check-e">TV</label>
-                                    </div>
-                                    <div class="input-item">
-                                        <input id="check-f" type="checkbox" name="amenities" value="Suitable for events">
-                                        <label for="check-f">Suitable for events
-                                            <span>The listing can accommodate a gathering of 25 or more attendees</span>
-                                        </label>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <p>Heating and cooling</p>
-                                    <div class="input-item">
-                                        <input id="check-g" type="checkbox" name="amenities" value="Air conditioning">
-                                        <label for="check-g">Air conditioning</label>
-                                    </div>
-                                    <div class="input-item">
-                                        <input id="check-h" type="checkbox" name="amenities" value="Indoor fireplace">
-                                        <label for="check-h">Indoor fireplace</label>
-                                    </div>
-                                    <div class="input-item">
-                                        <input id="check-i" type="checkbox" name="amenities" value="Heating">
-                                        <label for="check-i">Heating</label>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <p>Home safety</p>
-                                    <div class="input-item">
-                                        <input id="check-j" type="checkbox" name="amenities" value="Smoke alarm">
-                                        <label for="check-j">Smoke alarm</label>
-                                    </div>
-                                    <div class="input-item">
-                                        <input id="check-k" type="checkbox" name="amenities" value="First aid kit">
-                                        <label for="check-k">First aid kit</label>
-                                    </div>
+                                    @foreach($amenities as $key => $amenity)
+                                      <div class="input-item">
+                                        <input id="check-{{$key}}" type="checkbox" name="amenities[]" value="{{$key}}">
+                                        <label for="check-{{$key}}">{{$amenity->name}}</label>
+                                      </div>
+                                    @endforeach
                                   </div>
                                 </div>
                             </div>

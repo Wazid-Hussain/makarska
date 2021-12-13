@@ -6,29 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
+use App\Models\Amenity;
 
 class Listing extends Model
 {
     use HasFactory; 
     protected $table = 'listings';
     protected $fillable = [
-        'title',
         'category_id',
+        'title',
         'keywords',
         'address',
-        'street',
-        'city',
-        'zipcode',
+        // 'street',
+        // 'city',
+        // 'zipcode',
         'description',
-        'amenities',
+        // 'amenities',
         'price',
-        'created_by',
     ];
 
     public function images(){
        return $this->hasMany('\App\Models\ListingImage','listing_id');
     }
 
-
-    
+    public function amenities(){
+        return $this->belongsToMany(Amenity::class);
+    }
+   
 }

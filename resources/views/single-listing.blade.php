@@ -176,6 +176,16 @@
                             <!-- inline-facts end -->                            
                         </div>
                         <!-- list-single-main-item end -->   
+
+                        {{-- Calendar Section --}}
+                        <div class="list-single-main-item fl-wrap">
+                            <div class="list-single-main-item-title fl-wrap">
+                                <h3>Choose date</h3>
+                            </div>
+                            <input type="date" name="" id="">
+                        </div>
+                        {{-- Calendar Section End --}}
+
                         <!-- list-single-main-item -->   
                         <div class="list-single-main-item fl-wrap" id="sec4">
                             <div class="list-single-main-item-title fl-wrap">

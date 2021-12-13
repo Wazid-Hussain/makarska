@@ -35,54 +35,12 @@
                 <h3>{{__('footer.Our Last News')}}</h3>
                 <div class="widget-posts fl-wrap">
                   <ul>
-                    <li class="clearfix">
-                      <a href="#" class="widget-posts-img"
-                        ><img
-                          src="images/pexels-valeria-boltneva-2400.jpg"
-                          class="respimg"
-                          alt=""
-                      /></a>
-                      <div class="widget-posts-descr">
-                        <a href="#" title="">Vivamus dapibus rutrum</a>
-                        <span class="widget-posts-date"> 21 Mar 09.05 </span>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <a href="#" class="widget-posts-img"
-                        ><img
-                          src="images/pexels-valeria-boltneva-2400.jpg"
-                          class="respimg"
-                          alt=""
-                      /></a>
-                      <div class="widget-posts-descr">
-                        <a href="#" title="">Vivamus dapibus rutrum</a>
-                        <span class="widget-posts-date"> 21 Mar 09.05 </span>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <a href="#" class="widget-posts-img"
-                        ><img
-                          src="images/pexels-valeria-boltneva-2400.jpg"
-                          class="respimg"
-                          alt=""
-                      /></a>
-                      <div class="widget-posts-descr">
-                        <a href="#" title="">Vivamus dapibus rutrum</a>
-                        <span class="widget-posts-date"> 21 Mar 09.05 </span>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <a href="#" class="widget-posts-img"
-                        ><img
-                          src="images/pexels-valeria-boltneva-2400.jpg"
-                          class="respimg"
-                          alt=""
-                      /></a>
-                      <div class="widget-posts-descr">
-                        <a href="#" title="">Vivamus dapibus rutrum</a>
-                        <span class="widget-posts-date"> 21 Mar 09.05 </span>
-                      </div>
-                    </li>
+                  <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/" class="act-link">{{__('nav.Home')}}</a></li>
+                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/accommodations">{{__('nav.Accommodation')}}</a></li>
+                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/about">{{__('nav.About us')}}</a></li>
+                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/contact">{{__('nav.Contact')}}</a></li>
+                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/projects">{{__('nav.J Projects')}}</a></li>
+                    
                   </ul>
                 </div>
               </div>
@@ -91,55 +49,21 @@
               <div class="footer-widget fl-wrap">
                 <h3>{{__('footer.Our Instagram')}}</h3>
                 <div class="container insta-widget">
+
                   <div class="row">
+                   {{-- @foreach($images as $key => $image)
                     <div class="col-md-6 img-con">
                       <img
-                        src="images/pexels-valeria-boltneva-2400.jpg"
+                        src="{{asset('/insta/images/'.$key.'.png')}}"
                         alt="image"
                       />
                     </div>
-                    <div class="col-md-6 img-con">
-                      <img
-                        src="images/pexels-valeria-boltneva-2400.jpg"
-                        alt="image"
-                      />
-                    </div>
+                    @endforeach --}}
+
                   </div>
-                  <div class="row">
-                    <div class="col-md-6 img-con">
-                      <img
-                        src="images/pexels-valeria-boltneva-2400.jpg"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="col-md-6 img-con">
-                      <img
-                        src="images/pexels-valeria-boltneva-2400.jpg"
-                        alt="image"
-                      />
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 img-con">
-                      <img
-                        src="images/pexels-valeria-boltneva-2400.jpg"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="col-md-6 img-con">
-                      <img
-                        src="images/pexels-valeria-boltneva-2400.jpg"
-                        alt="image"
-                      />
-                    </div>
-                  </div>
+
                 </div>
-                <ul class="footer-contacts fl-wrap">
-                  <li>
-                    <span><i class="fa fa-map-marker"></i></span
-                    ><a href="#" target="_blank">Posted on Nov 20, 2021</a>
-                  </li>
-                </ul>
+
               </div>
             </div>
             <div class="col-md-3">

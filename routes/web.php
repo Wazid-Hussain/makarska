@@ -11,9 +11,12 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AmenityController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
+
+use App\Http\Controllers\InstagramDataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +36,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout')->middleware('admin');
 
     Route::resource('category', CategoryController::class);  
+
+    Route::resource('amenity', AmenityController::class);  
 });
 /*===== END ADMIN ROUTES ======*/
 
@@ -113,6 +118,9 @@ Route::get('/payment-step-3', [PaymentController::class, 'paymentStepPage'])->na
 Route::post('/payment-step-3', [PaymentController::class, 'paymentStep'])->name('paymentStep');
 Route::get('/payment-step-4', [PaymentController::class, 'thankyouStep']);
 /*====== PAYMENT  ROUTES END==========*/
+
+
+Route::get('instagram', [InstagramDataController::class, 'index']);
 
 /*====== DEFAULT AUTH  ROUTES ==========*/
 require __DIR__.'/auth.php';
