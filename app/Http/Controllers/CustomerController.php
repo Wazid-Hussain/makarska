@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Listing;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -31,8 +32,8 @@ class CustomerController extends Controller
         
         if (Auth::guard('customer')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
             
-            if($request->bookingRedirection == '1'){
-                return redirect()->route('add-booking')->with('message', 'Successfully Booked');
+            if(Session('formdata.0.total_price')){
+                return redirect()->route('billingStep');
             }
             
             return redirect()->route('customer.dashboard')->with('error', 'Customer Login Successfully');
@@ -60,10 +61,11 @@ class CustomerController extends Controller
 
         event(new Registered($customer));
 
-        Auth::login($customer);
+        Auth::guard('customer')->login($customer);
         
-            if($request->bookingRedirection == '1'){
-                return redirect()->route('add-booking')->with('message', 'Successfully Booked');
+            if(Session('formdata.0.total_price')){
+               
+                return redirect()->route('billingStep');
             }
 
         return view('customer.dashboard');
@@ -73,7 +75,7 @@ class CustomerController extends Controller
 
     public function CustomerLogout(){
         Auth::guard('customer')->logout();
-        return redirect()->route('customer_login_form')->with('error', 'Customer Logout Successfully');
+        return redirect()->route('index')->with('error', 'Customer Logout Successfully');
 
     }
 }

@@ -14,6 +14,7 @@ use Illuminate\Validation\Rules;
 use Session;
 use App\Models\Booking;
 
+
 use Stripe;
 
 class PaymentController extends Controller
@@ -31,7 +32,7 @@ class PaymentController extends Controller
         ]);        
         event(new Registered($customer));
         Auth::guard('customer')->login($customer);
-        return redirect()->intended('/payment-step-2');
+        return redirect()->route('billingStep');
     } // Method End
     
     public function billingStepPage(){
@@ -80,7 +81,6 @@ class PaymentController extends Controller
         return view('payment.payment');
     } // Method end
 
-
     public function paymentStep(Request $request){
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
@@ -93,18 +93,18 @@ class PaymentController extends Controller
                                 
                 ]
         ]);
-        Session::flush();   
+        Session::forget('formdata');   
         Session::flash('success', 'Payment successful!');           
         return redirect()->route('thankyouStep');
     }
-    
-
-
-
-
-
 
     public function thankyouStep(){
         return view('payment.thanks');
     }
+    
+    public function showBooking(){
+         $bookings = Booking::where('user_id',Auth::guard('customer')->user()->id)->paginate(3);
+        return view('/customer.bookings', compact('bookings'));
+    }
+    
 }

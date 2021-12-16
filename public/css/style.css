@@ -37,7 +37,37 @@
 ++ Coming Soon ++
 ++ Responsive ++
 /*-------------Fonts---------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro, sans-serif:300,400,500,600,700,800,800i,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat, sans-serif:400,500,600,700,800,800i,900|Quicksand:300,400,500,700&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese');
+
+@font-face {
+  font-family: Gotham-thin;
+  src: url('/fonts/gotham-thin.ttf');
+}
+@font-face {
+  font-family: Gotham-light;
+  src: url('/fonts/gotham-light.ttf');
+}
+@font-face {
+  font-family: Gotham-book;
+  src: url('/fonts/gotham-book.ttf');
+}
+@font-face {
+  font-family: Gotham-medium;
+  src: url('/fonts/gotham-medium.ttf');
+}
+@font-face {
+  font-family: Gotham-bold;
+  src: url('/fonts/gotham-bold.ttf');
+}
+@font-face {
+  font-family: Gotham-black;
+  src: url('/fonts/gotham-black.ttf');
+}
+@font-face {
+  font-family: Gotham-ultra;
+  src: url('/fonts/Gotham-Ultra.otf');
+}
 /*-------------General Style---------------------------------------*/
 html {
   overflow-x: hidden !important;
@@ -52,7 +82,8 @@ body {
   text-align: center;
   background: #fefafa;
   color: #000;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  /*font-family: 'Be Vietnam Pro', sans-serif;*/
 }
 @-o-viewport {
   width: device-width;
@@ -80,7 +111,7 @@ blockquote {
   position: relative;
 }
 blockquote:before {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
@@ -94,7 +125,7 @@ blockquote:before {
   opacity: 0.4;
 }
 blockquote p {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: italic;
   color: #000000;
 }
@@ -317,7 +348,7 @@ blockquote p {
 }
 header.main-header.sticky, 
 header.main-header{
-  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)) !important;
+  background-color: #f0f0f0;
   box-shadow: none;
 }
 .header-inner {
@@ -330,23 +361,27 @@ header.main-header{
   align-items: center;
   position: relative;
 }
-.web i.languages {
-    cursor: pointer;
+.header-inner-right .web {
+    position: relative;
 }
-.web i.languages:hover {
+.header-inner-right .web i.languages {
+    cursor: pointer;
+    color: #000000;
+}
+.header-inner-right .web i.languages:hover {
     color: #b13272;
 }
 .lan-modal {
-    width: 70%;
-    height: 70%;
+    width: 220px;
+    height: 130px;
+    border: 1px solid #b13272;
     border-radius: 10px;
-    background-color: #ffffff;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    position: absolute;
+    right: 0;
+    top: 42px;
     z-index: 999;
-    padding: 50px 60px;
+    padding: 20px;
 }
 .lan-modal h2 {
     text-align: left;
@@ -357,63 +392,20 @@ header.main-header{
 .lan-modal ul {
     list-style-type: none;
     display: flex;
-    margin: 20px 0;
+    flex-direction: column;
 }
 .lan-modal ul li {
-    width: 180px;
-    border: 1px solid #808080;
-    border-radius: 5px;
-    margin-right: 20px;
-    padding: 15px;
-}
-.lan-modal ul li:hover {
-    cursor: pointer;
-    border: 1px solid #000000;
-    background-color: #fafafa;
+    width: 100%;
+    margin-bottom: 10px;
 }
 .lan-modal ul li span {
     display: block;
-    text-align: center;
-}
-.lan-modal ul li span:first-child {
+    text-align: left;
     font-size: 16px;
 }
-.lan-overlay {
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 990;
-}
-.single-listing-overlay {
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-button.close-modal {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    border: none;
-    border-radius: 50%;
-    outline: none;
-    padding: 5px 10px;
-}
-button.close-modal:hover {
-  cursor: pointer;
-  color: #ffffff;
-  background-color: #b13272;
-}
-.lan-overlay:hover {
-  cursor: pointer;
-}
+.lan-modal ul li:hover span {
+    color: #b13272;
+} 
 .header-inner-right .bar-icon-group {
   height: 40px;
   background-color: white;
@@ -489,12 +481,6 @@ button.close-modal:hover {
 .add-list span {
   padding-left: 4px;
   font-weight: 700;
-}
-.dark-header .add-list {
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
-}
-.dark-header .add-list:hover {
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.1);
 }
 .show-reg-form {
   float: right;
@@ -650,7 +636,7 @@ button.close-modal:hover {
   font-weight: 600;
 }
 /*.header-user-name:before {*/
-/*  font-family: Montserrat, sans-serif;*/
+/*  font-family: Be Vietnam Pro, sans-serif;*/
 /*  font-style: normal;*/
 /*  font-weight: normal;*/
 /*  text-decoration: inherit;*/
@@ -1015,7 +1001,7 @@ section.parallax-section .bg {
 .section-title {
   float: left;
   width: 100%;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   position: relative;
   padding-bottom: 50px;
 }
@@ -1213,8 +1199,9 @@ section.gray-section .section-separator {
   position: relative;
 }
 .main-search-input-item:nth-child(1) label {
+  text-align: left;
   width: 100%;
-  left: 8px;
+  left: 20px;
 }
 .main-search-input-item.guests {
   border-right: 0;
@@ -1383,9 +1370,6 @@ section.gray-section .section-separator {
 .absolute-main-search-input .container {
   max-width: 900px;
 }
-.absolute-main-search-input .main-search-input {
-  box-shadow: 0px 0px 0px 7px rgba(0, 0, 0, 0.1);
-}
 .slideshow-container {
   position: absolute;
   top: 0;
@@ -1535,7 +1519,6 @@ section.gray-section .section-separator {
   color: #f0f0f0;
   margin: 0 10px;
   min-width: 120px;
-  box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.2);
 }
 .box-cat:hover {
   background: #f0f0f0;
@@ -1663,7 +1646,7 @@ section.gray-section .section-separator {
   font-size: 18px;
   color: #f0f0f0;
   text-transform: uppercase;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
 }
 .main-register {
   float: left;
@@ -1672,6 +1655,7 @@ section.gray-section .section-separator {
   padding: 0 0 30px;
   margin-bottom: 50px;
   background: #f0f0f0;
+  border: 1px solid #e2e2e2;
   border-radius: 6px;
   box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.12);
 }
@@ -2054,6 +2038,8 @@ section.gray-section .section-separator {
   background: rgba(0, 0, 0, 0.41);
 }
 .listing-item-grid .listing-item-cat {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 3;
   bottom: 0;
@@ -2069,12 +2055,13 @@ section.gray-section .section-separator {
 }
 .listing-item-grid .listing-item-cat h3 a {
   color: #000000;
-  background-color: #f1f1f1;
+  background-color: #f1f1f180;
   border-radius: 20px;
   padding: 5px 15px;
 }
 .listing-item-grid .listing-item-cat h3 a:hover {
   color: #b13272;
+  background-color: #f1f1f1;
 }
 .listing-item-grid .listing-item-cat p {
   float: left;
@@ -2083,7 +2070,7 @@ section.gray-section .section-separator {
   color: #000000;
   font-size: 12px;
   text-align: left;
-  background-color: #f1f1f1;
+  background-color: #f1f1f180;
   border-radius: 20px;
   padding: 3px 15px;
 }
@@ -2136,7 +2123,6 @@ section.gray-section .section-separator {
   border-radius: 30px;
   margin-top: 50px;
   position: relative;
-  box-shadow: 0px 0px 0px 7px rgba(204, 204, 204, 0.2);
 }
 .load-more-button i {
   float: right;
@@ -2388,6 +2374,7 @@ section.gray-section .section-separator {
     width: 100%;
 }
 .listsearch-input-item select#accommodation-type {
+    width: 82%;
     float: left;
     border: none;
     margin: 30px 0 0 14px;
@@ -2686,7 +2673,6 @@ section.gray-section .section-separator {
   color: #f0f0f0;
   border-radius: 100%;
   z-index: 20;
-  box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.4);
   cursor: pointer;
 }
 .infoBox-close:hover {
@@ -2791,7 +2777,6 @@ section.gray-section .section-separator {
   z-index: 20;
   padding: 10px 12px;
   border-radius: 4px;
-  box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.2);
 }
 ul.pagination, 
 div.pagination{
@@ -3248,7 +3233,6 @@ article .list-single-main-item {
   border-radius: 30px;
   font-size: 11px;
   font-weight: 700;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.4);
   z-index: 10;
 }
 .promo-link i {
@@ -3369,7 +3353,6 @@ article .list-single-main-item {
   margin-top: 25px;
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
 }
 .banner-wdget-content a:hover {
   background: #fefafa;
@@ -3953,7 +3936,12 @@ article .list-single-main-item {
 .custom-form input[type='text']:hover,
 .custom-form input[type='email']:hover,
 .custom-form input[type='password']:hover,
-.custom-form input[type='button']:hover {
+.custom-form input[type='button']:hover, 
+.custom-form textarea:focus,
+.custom-form input[type='text']:focus,
+.custom-form input[type='email']:focus,
+.custom-form input[type='password']:focus,
+.custom-form input[type='button']:focus{
   border: 1px solid #666666;
 }
 .custom-form input,
@@ -3965,13 +3953,14 @@ article .list-single-main-item {
 }
 #contact-form .custom-form textarea {
   color: #000000;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   margin-bottom: 15px;
 }
 #contact-form input#verify {
   margin-top: 15px;
 }
 #contact-form button#submit {
+  border: 1px solid transparent;
   border-radius: 30px;
   padding: 17px 48px;
 }
@@ -3980,7 +3969,7 @@ article .list-single-main-item {
   color: #666;
   font-weight: 500;
   font-size: 13px;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
 }
 .custom-form input:-moz-placeholder,
 .custom-form textarea:-moz-placeholder {
@@ -4021,7 +4010,7 @@ article .list-single-main-item {
   padding-right: 3px;
   vertical-align: middle;
   font-weight: 600;
-  /*font-family: Montserrat, sans-serif;*/
+  /*font-family: Be Vietnam Pro, sans-serif;*/
   /*font-style: normal;*/
   /*font-weight: normal;*/
   /*text-decoration: inherit;*/
@@ -4101,6 +4090,9 @@ article .list-single-main-item {
 .quantity-item {
   float: right;
 }
+.box-widget-content .custom-form textarea {
+  margin-top: 40px;
+}
 .custom-form .quantity input.qty {
   color: #f0f0f0;
   width: 100px;
@@ -4150,7 +4142,7 @@ article .list-single-main-item {
   line-height: 30px;
   font-size: 14px;
   color: white;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-weight: bold;
   box-sizing: border-box;
 }
@@ -4386,7 +4378,7 @@ article .list-single-main-item {
 }
 .mapzoom-in:before,
 .mapzoom-out:before {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
@@ -4536,6 +4528,34 @@ article .list-single-main-item {
   height: 6px;
   border-radius: 100%;
 }
+.hoster_details {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+.hoster_details > div {
+    padding: 0;
+}
+.hoster_details .hoster_head {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.hoster_details .hoster_facility {
+    text-align: left;
+}
+.hoster_details .hoster_facility li {
+    display: inline-block;
+}
+.hoster_details .hoster_image img {
+    float: right;
+    width: 56px;
+}
 .user-profile-avatar {
   width: 150px;
   height: 150px;
@@ -4543,7 +4563,6 @@ article .list-single-main-item {
   display: inline-block;
   margin: 25px 0 15px;
   border-radius: 100%;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
 }
 .user-profile-avatar img {
   width: 150px;
@@ -4590,7 +4609,7 @@ article .list-single-main-item {
 .user-profile-menu-wrap:before,
 .user-profile-menu-wrap:after {
   position: absolute;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
@@ -4921,7 +4940,7 @@ article .list-single-main-item {
   color: #98aab8;
 }
 .radio input[type='radio']:checked + span:before {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
@@ -5267,6 +5286,9 @@ article .list-single-main-item {
 .grid-sizer-second {
   width: 66.6%;
 }
+.gallery-item-second .listing-item-grid .listing-item-cat p {
+  width: 348px;
+}
 .four-column .gallery-item {
   width: 25%;
 }
@@ -5293,7 +5315,7 @@ article .list-single-main-item {
 
 .color-bg .images-collage.fl-wrap {
   height: 600px;
-  background: url('../images/Free_Pen_Mockup_3500.jpg') no-repeat;
+  background: url('../images/Kenia-800.jpg') no-repeat;
   background-size: cover;
   background-position: center center;
 }
@@ -5312,7 +5334,6 @@ article .list-single-main-item {
   height: 160px;
   display: inline-block;
   margin-top: 90px;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
 }
 .images-collage-other {
   width: 90px;
@@ -5333,7 +5354,7 @@ article .list-single-main-item {
   font-size: 18px;
   color: #f0f0f0;
   text-transform: uppercase;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
 }
 .anim-col {
   animation: anim-col 4.15s infinite;
@@ -5426,7 +5447,7 @@ article .list-single-main-item {
   font-size: 17px;
 }
 .price-num-desc {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: italic;
   color: #bcbcbc;
   display: block;
@@ -5545,7 +5566,6 @@ article .list-single-main-item {
   height: 80px;
 }
 .testimonilas-text {
-  padding: 65px 50px;
   overflow: hidden;
   z-index: 1;
   position: relative;
@@ -5554,13 +5574,15 @@ article .list-single-main-item {
   margin-bottom: 30px;
   border: 1px solid #eee;
   transition: all 0.3s ease-in-out;
+  padding: 30px;
 }
 .testimonials-carousel .slick-current .testimonilas-text {
+  color: #ffffff;
   border-color: transparent;
 }
 .testimonilas-text:before,
 .testimonilas-text:after {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
@@ -5572,7 +5594,7 @@ article .list-single-main-item {
 .testimonilas-text p {
   color: #000000;
   font-size: 14px;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: italic;
 }
 .testimonials-carousel .slick-current .testimonilas-text p {
@@ -5583,6 +5605,21 @@ article .list-single-main-item {
 }
 .testimonilas-text .listing-rating i {
   margin: 0 5px;
+}
+.testimonilas-text .customer {
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+.testimonilas-text .customer img {
+  float: left;
+  width: 56px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.testimonilas-text .customer h4 {
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 .slick-dots li.slick-active button {
   width: 12px;
@@ -5648,10 +5685,12 @@ i.fa.fa-instagram {
 .tips_articles .section-title p {
   font-size: 19px;
 }
-.tips_articles .card-post-content p,
+.tips_articles .card-post-content p {
+  font-size: 14px;
+}
 .tips_articles .post-opt span,
 .tips_articles .post-opt a {
-  font-size: 10px;
+    font-size: 10px;
 }
 .home-posts .img_calendar,
 .home-posts .img_eye,
@@ -5761,7 +5800,7 @@ footer.main-footer.fixed-footer {
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
 }
 .footer-menu li a:hover {
   color: #b13272;
@@ -5790,7 +5829,7 @@ p.interact,
 }
 #footer-twiit .timePosted a {
   color: #ccc;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: italic;
   position: relative;
   float: left;
@@ -5798,7 +5837,7 @@ p.interact,
   padding-left: 20px;
 }
 #footer-twiit .timePosted a:before {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
@@ -5895,7 +5934,7 @@ p.interact,
   height: auto;
 }
 .footer-widget .about-widget h4 {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: italic;
   color: #bcbcbc;
   padding-top: 6px;
@@ -6079,6 +6118,11 @@ p.interact,
 .process-item .map-marker img {
   width: 80px;
 }
+.process-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 40px;
+}
 .process-wrap li i {
   margin: 0 auto 30px;
   font-size: 59px;
@@ -6097,7 +6141,7 @@ p.interact,
   color: #000000;
   font-size: 14px;
   font-weight: 300;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 .process-count {
   position: absolute;
@@ -6328,7 +6372,6 @@ p.interact,
   z-index: 20;
   left: 50%;
   top: 50%;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.4);
   border-radius: 100%;
   transition: all 300ms linear;
 }
@@ -6340,7 +6383,22 @@ p.interact,
 }
 .color-bg-text {
   height: 600px;
-  padding: 140px 60px;
+  padding: 60px;
+}
+.color-bg-text h5 {
+  position: relative;
+  text-align: left;
+  color: #ffffff;
+  padding-bottom: 10px;
+}
+.color-bg-text h5:before {
+    content: '';
+    width: 100px;
+    height: 1px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+    top: 30px;
 }
 .color-bg-text h3 {
   font-size: 40px;
@@ -6348,10 +6406,18 @@ p.interact,
   padding-bottom: 20px;
   color: #ffffff;
   font-weight: 600;
+  margin-top: 40px;
 }
 .color-bg-text .text-content {
-  height: 72px;
-  overflow: hidden;
+  height: 322px;
+  overflow-y: scroll;
+}
+.color-bg-text .text-content::-webkit-scrollbar {
+    display: none;
+}
+.color-bg-text .text-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .color-bg-text .text-content p {
   text-align: left;
@@ -6576,7 +6642,6 @@ p.interact,
   z-index: 116;
   cursor: pointer;
   border-radius: 3px;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
 }
@@ -6585,7 +6650,6 @@ p.interact,
 }
 .chat-widget-button span {
   width: 150px;
-  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.2);
   position: absolute;
   left: -160px;
   top: 0;
@@ -6720,7 +6784,7 @@ p.interact,
   position: relative;
 }
 .chat-message p:before {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   content: '\f0d9';
   position: absolute;
   top: 8px;
@@ -6862,7 +6926,7 @@ p.interact,
   padding-bottom: 20px;
 }
 .video-item p {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-style: italic;
   color: #eee;
   text-align: left;
@@ -6892,7 +6956,6 @@ p.interact,
   position: relative;
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
 }
 .showshare span {
   position: relative;
@@ -6936,7 +6999,6 @@ p.interact,
   right: 0;
   min-width: 170px;
   background: #f0f0f0;
-  box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.2);
   padding: 8px 8px 8px 18px;
   margin-top: -30px;
   border-radius: 6px;
@@ -6983,7 +7045,7 @@ p.interact,
   visibility: visible;
 }
 .share-icon::before {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
@@ -7042,7 +7104,7 @@ p.interact,
   font-size: 134px;
   color: #f0f0f0;
   font-weight: 900;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   letter-spacing: 10px;
 }
 .error-wrap p {
@@ -7055,7 +7117,6 @@ p.interact,
   overflow: hidden;
   border-radius: 30px;
   position: relative;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
 }
 .error-wrap form input {
   float: left;
@@ -7127,7 +7188,7 @@ p.interact,
   color: #f0f0f0;
   font-size: 74px;
   font-weight: 700;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
 }
 .cs-countdown-item p {
   color: #000000;
@@ -7186,7 +7247,6 @@ p.interact,
   outline: none;
   border-radius: 30px;
   padding: 0 30px;
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.2);
 }
 .cs-wrapper .subcribe-form #subscribe #subscribe-button {
   height: 38px;
@@ -7351,7 +7411,6 @@ p.interact,
   background: #f0f0f0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.3);
   margin-bottom: 50px;
   padding-right: 300px;
 }
@@ -7459,6 +7518,9 @@ p.interact,
   .slider-container-wrap {
     padding: 250px 0 400px;
   }
+  .color-bg-text .text-content p {
+      padding-right: 50px;
+  }
 }
 @media only screen and (max-width: 1064px) {
   .nav-button-wrap,
@@ -7497,6 +7559,7 @@ p.interact,
   }
   .header-inner-center .nav-icon {
     display: block;
+    color: #ffffff;
     font-size: 20px;
   }
   .header-inner-center .nav-icon:hover {
@@ -7551,7 +7614,7 @@ p.interact,
     padding-left: 24px;
   }
   .menusb a.back:before {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Be Vietnam Pro', sans-serif;
     font-style: normal;
     font-weight: normal;
     text-decoration: inherit;
@@ -7583,7 +7646,8 @@ p.interact,
     float: left;
   }
   .color-bg-text {
-    padding-left: 0;
+    height: auto;
+    padding-left: 40px;
   }
   section.list-single-section {
     padding-top: 100px;
@@ -7660,6 +7724,9 @@ p.interact,
   }
 }
 @media only screen and (max-width: 768px) {
+  .container {
+    /*margin: 60px auto 0px;*/
+  }
   .gallery-item,
   #progressbar li {
     width: 50%;
@@ -7708,22 +7775,30 @@ p.interact,
     background: rgba(255, 255, 255, 0.2);
     padding: 14px 20px 10px;
     border-radius: 10px;
-    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0);
   }
   .main-search-input-item {
     width: 100%;
-    border: 1px solid #eee;
     height: 50px;
+    background-color: #f0f0f0;
     border: none;
+    border-radius: 6px;
     margin-bottom: 10px;
+  }
+  .main-search-input-item:nth-child(1){
+    margin-bottom: 0;
+    padding: 0 0 60px;
   }
   .main-search-input-item .selectbox {
     background: #f0f0f0;
     border-radius: 6px !important ;
   }
-  .main-search-input-item input {
+  .main-search-input-item input, 
+  .listsearch-input-item select {
     border-radius: 6px !important ;
     background: #f0f0f0;
+  }
+  .listsearch-input-item select {
+      width: 88%;
   }
   .main-search-button {
     position: relative;
@@ -7740,6 +7815,9 @@ p.interact,
   .show-reg-form:before,
   .listing-view-layout {
     display: none;
+  }
+  .gallery-item-second .listing-item-grid .listing-item-cat p {
+    width: 100%;
   }
   .single-facts .inline-facts-wrap,
   .cs-countdown-item,
@@ -7934,7 +8012,7 @@ p.interact,
     padding: 40px 0;
   }
   .section-title h2 {
-    font-size: 36px;
+    font-size: 32px;
   }
   .section-title p {
     font-size: 16px;
@@ -7988,7 +8066,10 @@ p.interact,
   }
   section.parallax-section {
     padding: 20px 0;
-    height: 340px;
+    height: 480px;
+  }
+  section.parallax-section .list-single-header {
+    padding-top: 60px;
   }
   section.parallax-section .intro-item h3 {
     top: 38%;

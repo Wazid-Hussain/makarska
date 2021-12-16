@@ -5,7 +5,7 @@
 <div class="content">
     <!--  section  --> 
     <section class="parallax-section single-par list-single-section" data-scrollax-parent="true" id="sec1">
-        <div class="bg par-elem "  data-bg="{{asset('/storage/'.$listing->images[0]->path.'/'.$listing->images[0]->image_name)}}" data-scrollax="properties: { translateY: '30%' }"></div>
+        <div class="bg par-elem "  style="background:url('{{asset('/storage/'.$listing->images[0]->path.'/'.$listing->images[0]->image_name)}}')" data-scrollax="properties: { translateY: '30%' }"></div>
         <div class="overlay"></div>
         <div class="bubble-bg"></div>
         <div class="list-single-header absolute-header fl-wrap">
@@ -17,6 +17,8 @@
                             <span>  Now Opening <i class="fa fa-check"></i></span>
                         </div>
                     </div>
+                    
+                    {{--dd($amen->amenities)--}}
                     <h2>{{$listing->title}}</h2>
                     <span class="section-separator"></span>
                     <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
@@ -69,8 +71,25 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="list-single-main-wrapper fl-wrap" id="sec2">
-                        <div class="breadcrumbs gradient-bg  fl-wrap"><a href="#">Home</a><a href="#">Listings</a><span>{{$listing->title}}</span></div>
-
+                        <!--<div class="breadcrumbs gradient-bg  fl-wrap">-->
+                        <!--    <a href="#">Home</a><a href="#">Listings</a>-->
+                        <!--    <span>{{$listing->title}}</span>-->
+                        <!--</div>-->
+                        
+                        <div class="row hoster_details">
+                            <div class="col-md-8">
+                                <h2 class="hoster_head">Entire guest suite hosted by&nbsp;Lila</h2>
+                                <ol class="hoster_facility">
+                                    <li><span>3 guests</span></li>
+                                    <li><span> . </span><span>1 bedroom</span></li>
+                                    <li><span> . </span><span>2 beds</span></li>
+                                    <li><span> . </span><span>1.5 bathrooms</span></li>
+                                </ol>
+                            </div>
+                            <div class="col-md-4 hoster_image">
+                                <img src="/storage/images/user.png" alt="hoster image" />
+                            </div>
+                        </div>
                         
                         <div class="list-single-main-item fl-wrap" id="sec3">
                             <div class="list-single-main-item-title fl-wrap">
@@ -128,11 +147,9 @@
                                 <a href="#">Wine</a>
                                 <a href="#">Sandwich</a>
                                 <a href="#">Food</a>
-                                <a href="#">Cocktails</a>                                                                               
+                                <a href="#">Cocktails</a>
                             </div>
                         </div>
-
-
                         <div class="list-single-facts fl-wrap gradient-bg">
                             <!-- inline-facts -->
                             <div class="inline-facts-wrap">
@@ -175,8 +192,8 @@
                             </div>
                             <!-- inline-facts end -->                            
                         </div>
-                        <!-- list-single-main-item end -->   
-
+                        <!-- list-single-main-item end --> 
+                        
                         {{-- Calendar Section --}}
                         <div class="list-single-main-item fl-wrap">
                             <div class="list-single-main-item-title fl-wrap">
@@ -185,73 +202,77 @@
                             <input type="date" name="" id="">
                         </div>
                         {{-- Calendar Section End --}}
-
+                        
+                        
                         <!-- list-single-main-item -->   
                         <div class="list-single-main-item fl-wrap" id="sec4">
                             <div class="list-single-main-item-title fl-wrap">
-                                <h3>Item Revies -  <span> 0 </span></h3>
+                                <h3>Item Revies -  <span> {{count($listing->comments)}} </span></h3>
                             </div>
                             <div class="reviews-comments-wrap">
                                 <!-- reviews-comments-item -->  
-                                <!-- <div class="reviews-comments-item">
+                                @foreach($listing->comments as $comment)
+                                <div class="reviews-comments-item">
                                     <div class="review-comments-avatar">
                                         <img src="images/avatar/1.jpg" alt=""> 
                                     </div>
                                     <div class="reviews-comments-item-text">
-                                        <h4><a href="#">Jessie Manrty</a></h4>
-                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
+                                        <h4><a href="#">{{$comment->user->name}}</a></h4>
+                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="{{$comment->rating}}"> </div>
                                         <div class="clearfix"></div>
-                                        <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
-                                        <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>27 May 2018</span>
+                                        <p>{{$comment->comment}}</p>
+                                        <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>{{$comment->created_at->format('F j, Y')}}</span>
                                     </div>
-                                </div> -->
+                                </div>
+                                @endforeach
                                 <!--reviews-comments-item end-->                                                                 
                             </div>
                         </div>
                         <!-- list-single-main-item end -->   
-                        <!-- list-single-main-item -->   
+                        <!-- list-single-main-item --> 
+                        
+                         @if(Auth::guard('customer')->check())
+                        <form method="post" action="/listing/{{$listing->id}}/comments" class="add-comment custom-form">
+                            @csrf
                         <div class="list-single-main-item fl-wrap" id="sec5">
                             <div class="list-single-main-item-title fl-wrap">
                                 <h3>Add Revies  & Rate iteam</h3>
                             </div>
                             <!-- Add Review Box -->
                             <div id="add-review" class="add-review-box">
-                                <div class="leave-rating-wrap">
+                                <div class="leave-rating-wrap fl-wrap">
                                     <span class="leave-rating-title">Your rating  for this listing : </span>
                                     <div class="leave-rating">
-                                        <input type="radio" name="rating" id="rating-1" value="1"/>
-                                        <label for="rating-1" class="fa fa-star-o"></label>
-                                        <input type="radio" name="rating" id="rating-2" value="2"/>
-                                        <label for="rating-2" class="fa fa-star-o"></label>
+                                        <input type="radio" name="rating" id="rating-1" value="5"/>
+                                        <label for="rating-1" class="fa fa-star-o" style="font-size: 14px;float: right;letter-spacing: 4px;color: #facc39;cursor: pointer;transition: 0.3s;width:auto;"></label>
+                                        <input type="radio" name="rating" id="rating-2" value="4"/>
+                                        <label for="rating-2" class="fa fa-star-o" style="font-size: 14px;float: right;letter-spacing: 4px;color: #facc39;cursor: pointer;transition: 0.3s;width:auto;"></label>
                                         <input type="radio" name="rating" id="rating-3" value="3"/>
-                                        <label for="rating-3" class="fa fa-star-o"></label>
-                                        <input type="radio" name="rating" id="rating-4" value="4"/>
-                                        <label for="rating-4" class="fa fa-star-o"></label>
-                                        <input type="radio" name="rating" id="rating-5" value="5"/>
-                                        <label for="rating-5" class="fa fa-star-o"></label>
+                                        <label for="rating-3" class="fa fa-star-o" style="font-size: 14px;float: right;letter-spacing: 4px;color: #facc39;cursor: pointer;transition: 0.3s;width:auto;"></label>
+                                        <input type="radio" name="rating" id="rating-4" value="2"/>
+                                        <label for="rating-4" class="fa fa-star-o" style="font-size: 14px;float: right;letter-spacing: 4px;color: #facc39;cursor: pointer;transition: 0.3s;width:auto;"></label>
+                                        <input type="radio" name="rating" id="rating-5" value="1"/>
+                                        <label for="rating-5" class="fa fa-star-o" style="font-size: 14px;float: right;letter-spacing: 4px;color: #facc39;cursor: pointer;transition: 0.3s;width:auto;"></label>
                                     </div>
                                 </div>
                                 <!-- Review Comment -->
-                                <form   class="add-comment custom-form">
                                     <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label><i class="fa fa-user-o"></i></label>
-                                                <input type="text" placeholder="Your Name *" value=""/>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><i class="fa fa-envelope-o"></i>  </label>
-                                                <input type="text" placeholder="Email Address*" value=""/>
-                                            </div>
-                                        </div>
-                                        <textarea cols="40" rows="3" placeholder="Your Review:"></textarea>
+                                        <textarea name="comment" cols="40" rows="3" placeholder="Your Review:"></textarea>
                                     </fieldset>
-                                    <button class="btn  big-btn  color-bg flat-btn">Submit Review <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                                </form>
+                                    <button type="submit" class="btn  big-btn  color-bg flat-btn">Submit Review <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                             </div>
                             <!-- Add Review Box / End -->
                         </div>
                         <!-- list-single-main-item end -->                            
+                    </form>
+                    
+                    @else
+                        <div class="list-single-main-item fl-wrap" id="sec5">
+                           <a href="/customer/login">Log in first to comment</a>
+                        </div>
+                @endif
+                    
+                    
                     </div>
                 </div>
                 <!--box-widget-wrap -->
@@ -276,7 +297,7 @@
                                                 <div class="col-md-12">      
                                                     <span>Check In / check out Date :</span>                         
                                                     <label><i class="fa fa-calendar-check-o"></i>  </label>
-                                                    <input id="check-in" type="text" placeholder="check in date" class="datepicker"   data-large-mode="true" data-large-default="true" value=""/>
+                                                    <input id="check-in" type="text" placeholder="check in date" class="datepicker check-in"   data-large-mode="true" data-large-default="true" value=""/>
                                                 </div>
                                                 <input id="input-start-from" type="hidden" name="start_from" value=''>
                                                 <input id="input-end-to" type="hidden" name="end_to" value=''>
@@ -613,7 +634,7 @@
             var bookedDates = @json($bookedDates);
             
             $(function() {
-                $('#check-in').daterangepicker({
+                $('.check-in').daterangepicker({
                     opens: 'left',
                     startDate: moment().format("MM/DD/YYYY"),
                     minDate: moment().format("MM/DD/YYYY"),

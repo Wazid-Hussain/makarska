@@ -22,7 +22,7 @@
                             
                             @endif
                             <a href="#" class="facebook-log"><i class="fa fa-facebook-official"></i>Log in with Facebook</a>
-                            <a href="#" class="twitter-log"><i class="fa fa-twitter"></i> Log in with Twitter</a>
+                            <a href="#" class="twitter-log"><i class="fa fa-google"></i> Log in with Google</a>
                         </div>
                         <div class="log-separator fl-wrap"><span>or</span></div>
                         <div id="tabs-container">

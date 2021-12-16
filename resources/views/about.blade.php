@@ -5,33 +5,16 @@
                     <!--section -->
                     <section class="parallax-section" data-scrollax-parent="true" id="sec1">
                         <div class="bg par-elem "  data-bg="images/bg-static.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
-                        <div class="overlay"></div>
+                        <div class="overlay" style="background-color:rgb(0,0,0)"></div>
                         <div class="container">
                             <div class="section-title center-align">
-                                <h2><span>About Our Company</span></h2>
+                                <h2><span style="color:#fff">About Our Company</span></h2>
                                 <div class="breadcrumbs fl-wrap"><a href="#">Home</a><span>About</span></div>
                                 <span class="section-separator"></span>
                             </div>
                         </div>
-                        <div class="header-sec-link">
-                            <div class="container"><a href="#sec2" class="custom-scroll-link">Let's Start</a></div>
-                        </div>
                     </section>
                     <!-- section end -->
-                    <!--section -->
-                    <div class="scroll-nav-wrapper fl-wrap">
-                        <div class="container">
-                            <nav class="scroll-nav scroll-init inline-scroll-container">
-                                <ul>
-                                    <li><a class="act-scrlink" href="#sec1">Top</a></li>
-                                    <li><a href="#sec2">About</a></li>
-                                    <li><a href="#sec3">Facts</a></li>
-                                    <li><a href="#sec4">Team</a></li>
-                                    <li><a href="#sec5">Testimonials</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
                     <section  id="sec2">
                         <div class="container">
                             <div class="section-title">
@@ -49,15 +32,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="list-single-main-item-title fl-wrap">
-                                            <h3>Our Awesome <span>Story</span></h3>
-                                            <h4>Check video presentation to find   out more about us .</h4>
-                                            <span class="section-separator fl-sec-sep"></span>
-                                        </div>
-                                        <p>Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit risus at metus.</p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.
-                                        </p>
+                                        <p>Seit meiner jüngsten Kindheit verbringe ich, Filip, meine Ferien bei meiner Familie in und um 
+Makarska an der Adriaküste. Ich würde nicht sagen, dass ich jeden einzelnen Stein kenne, aber 
+ich habe seitdem viele, viele Steine umgedreht. Mein Wissen und meine Verbundenheit zu 
+diesem wunderschönen Landstrich möchte ich gerne meinen Kunden weitergeben</p>
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +48,10 @@
                                     <div class="time-line-icon">
                                         <i class="fa fa-medkit"></i>
                                     </div>
-                                    <h3>24 Hours Support</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.  </p>
+                                    <h3>Qualitätskontrolle</h3>
+                                    <p>Jedes Ferienhaus durchläuft eine strenge Qualitätskontrolle. 
+Zuvorkommende Vermieter, hochwertige Ausstattung und Sauberkeit stehen an 
+erster Stelle.  </p>
                                 </div>
                                 <!-- features-box end  --> 
                                 <!--features-box --> 
@@ -79,8 +59,9 @@
                                     <div class="time-line-icon">
                                         <i class="fa fa-cogs"></i>
                                     </div>
-                                    <h3>Admin Panel</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.  </p>
+                                    <h3>Ausgewählte Unterkünfte</h3>
+                                    <p> Qualität statt Quantität. Gezielte Unterkünfte, die 
+unsere Kriterien erfüllen,werden im Portfolio aufgenommen. </p>
                                 </div>
                                 <!-- features-box end  --> 
                                 <!--features-box --> 
@@ -88,8 +69,11 @@
                                     <div class="time-line-icon">
                                         <i class="fa fa-television"></i>
                                     </div>
-                                    <h3>Mobile Friendly</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.  </p>
+                                    <h3>Vor Ort Betreuung durch den Vermieter</h3>
+                                    <p>Jeder Vermieter verpflichtet sich für den 
+Gast 24/7 erreichbar zu sein. Alle Gäste bekommen bei An- und Abreise einen 
+ausführlichen Rundgang. Restaurants, Sehenswürdigkeiten und Strände werden 
+Ihnen vor Ort ebenfalls empfohlen. </p>
                                 </div>
                                 <!-- features-box end  -->                                                   
                             </div>

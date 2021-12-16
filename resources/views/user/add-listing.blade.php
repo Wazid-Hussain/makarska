@@ -30,7 +30,7 @@
                                     @foreach($categories as $key => $category)
                                 
                                     <label>
-                                      <input type="radio" name="category" value="{{$key}}"/>
+                                      <input type="radio" name="category_id" value="{{$key}}"/>
                                       <div class="box">
                                         <span>{{$category}}</span>
                                       </div>
@@ -135,10 +135,10 @@
                                   
                                   <div>
                                     <p>Bathroom</p>
-                                    @foreach($amenities as $key => $amenity)
+                                    @foreach($amenities as $amenity)
                                       <div class="input-item">
-                                        <input id="check-{{$key}}" type="checkbox" name="amenities[]" value="{{$key}}">
-                                        <label for="check-{{$key}}">{{$amenity->name}}</label>
+                                        <input id="check-{{$amenity->id}}" type="checkbox" name="amenities[]" value="{{$amenity->id}}">
+                                        <label for="check-{{$amenity->id}}">{{$amenity->name}}</label>
                                       </div>
                                     @endforeach
                                   </div>
@@ -169,7 +169,49 @@
                                     <span><i class="fa fa fa-bed"></i>Rooms :</span>
                                     <div class="quantity-item">
                                       <input type="button" value="-" class="minus" />
-                                      <input type="text" name="quantity" title="Qty" class="qty" min="1" max="5" step="1" value="1" />
+                                      <input type="text" name="rooms" title="Qty" class="qty" min="1" max="5" step="1" value="1" />
+                                      <input type="button" value="+" class="plus" />
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          
+                        <div class="row custom-form">
+                            <div class="col-md-6">
+                                <h4><span>*</span> Beds</h4>
+                                <div class="quantity fl-wrap">
+                                    <span><i class="fa fa fa-bed"></i>Beds :</span>
+                                    <div class="quantity-item">
+                                      <input type="button" value="-" class="minus" />
+                                      <input type="text" name="beds" title="Qty" class="qty" min="1" max="10" step="1" value="1" />
+                                      <input type="button" value="+" class="plus" />
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                                    
+                        <div class="row custom-form">
+                            <div class="col-md-6">
+                                <h4><span>*</span> Bathrooms</h4>
+                                <div class="quantity fl-wrap">
+                                    <span><i class="fa fa fa-bed"></i>Bathrooms :</span>
+                                    <div class="quantity-item">
+                                      <input type="button" value="-" class="minus" />
+                                      <input type="text" name="bathrooms" title="Qty" class="qty" min="1" max="5" step="1" value="1" />
+                                      <input type="button" value="+" class="plus" />
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          
+                        <div class="row custom-form">
+                            <div class="col-md-6">
+                                <h4><span>*</span> Kitchens</h4>
+                                <div class="quantity fl-wrap">
+                                    <span><i class="fa fa fa-bed"></i>Kitchens :</span>
+                                    <div class="quantity-item">
+                                      <input type="button" value="-" class="minus" />
+                                      <input type="text" name="kitchens" title="Qty" class="qty" min="0" max="5" step="1" value="0" />
                                       <input type="button" value="+" class="plus" />
                                     </div>
                                 </div>
@@ -177,16 +219,15 @@
                           </div>
                           <div class="row custom-form">
                             <div class="col-md-6">
-                                <h4><span>*</span> Adults</h4>
+                                <h4><span>*</span> Guests</h4>
                                 <div class="quantity fl-wrap">
-                                    <span><i class="fa fa-user-plus"></i>Persons :</span>
+                                    <span><i class="fa fa-user-plus"></i>Guests :</span>
                                     <div class="quantity-item">
                                       <input type="button" value="-" class="minus" />
-                                      <input type="text" name="quantity" title="Qty" class="qty" min="1" max="2" step="1" value="1" />
+                                      <input type="text" name="guests" title="Qty" class="qty" min="1" max="10" step="1" value="1" />
                                       <input type="button" value="+" class="plus" />
                                     </div>
                                 </div>
-                                <span class="condn">Max. of 2 Adults per room.</span>
                             </div>
                           </div>
                           <div class="row custom-form">

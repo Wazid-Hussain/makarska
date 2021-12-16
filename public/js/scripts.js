@@ -172,7 +172,7 @@ function initCitybook() {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerMode: true,
+          centerMode: false,
         },
       },
     ],
@@ -884,28 +884,84 @@ $(function () {
   initCitybook();
   initparallax();
 });
+
 // nav background color -----------------
 const topNav = document.querySelector('header.main-header');
 const heroSec = document.querySelector('#wrapper .content section:nth-child(1)');
+const logo = document.querySelector('.logo-holder img');
+const navLiItms = document.querySelectorAll('.nav-holder.main-menu nav li a');
+const lanIcn = document.querySelector('.web i.languages');
+const navIcon = document.querySelector('.header-inner-center .nav-icon');
+const navI = document.querySelector('.header-inner-center .nav-icon .fa');
+const mainM = document.querySelector('.main-menu');
+/*----------
 window.addEventListener('scroll', function () {
   const heroPos = heroSec.getBoundingClientRect();
   if (heroPos.y < 0) {
     topNav.style.background = '#f0f0f0';
+    logo.src = '/images/Logo-dark.png';
+    navLiItms.forEach(itm => {
+        if(!itm.classList.contains('act-link')){
+            itm.style.color = '#000000';
+        }
+    });
+    lanIcn.style.color = '#000000';
+    navIcon.style.color = '#000000';
   } else {
-    topNav.style.background = 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0))';
+    topNav.style.background = 'transparent';
+    logo.src = '/images/Logo-light.png';
+    navLiItms.forEach(itm => {
+        if(!itm.classList.contains('act-link')){
+            itm.style.color = '#ffffff';
+        }
+    });
+    lanIcn.style.color = '#ffffff';
+    navIcon.style.color = '#ffffff';
   }
-});
+});------*/
 
 // bar icon header nav ---------------------
 const bars = document.querySelector('.header-inner-right .bar-icon-group');
 const list = document.querySelector('.header-inner-right .bar-icon-group ul');
 const regMod = document.querySelector('.main-register-wrap.modal');
 bars.addEventListener('click', function (e) {
+  lanModal.classList.add('hidden');
   list.classList.toggle('hidden');
   const link = e.target.innerHTML;
   if (link == 'Sign In') {
     regMod.style.display = 'block';
   }
+});
+
+
+// hamburger menu --------------------------------
+navIcon.addEventListener('click', function(){
+  if(mainM.style.visibility == 'hidden' && 
+  navI.classList.contains('fa-bars')) {
+    mainM.style.visibility = 'visible';
+    mainM.style.opacity = '1';
+    navI.classList.remove('fa-bars');
+    navI.classList.add('fa-close');
+  } else {
+    mainM.style.visibility = 'hidden';
+    mainM.style.opacity = '0';
+    navI.classList.remove('fa-close');
+    navI.classList.add('fa-bars');
+  }
+});
+
+// preview of uploaded image - add-listing ----------
+const loadImgs = document.querySelectorAll('.act-widget .fuzone input');
+const iconImg = document.querySelector('.act-widget .fuzone .fu-text span');
+
+loadImgs.forEach(img => {
+    img.addEventListener('change', function(e){
+        const preview = e.target.closest('.fuzone').querySelector('.preview');
+        preview.src = URL.createObjectURL(e.target.files[0]);
+        preview.onload = function() {
+          URL.revokeObjectURL(preview.src);
+        }
+    });
 });
 
 // active navigation item -----------------------------
@@ -927,26 +983,13 @@ navItms.forEach(itm => {
 // language modal window -------------------------
 const globeLan = document.querySelector('.web i.languages');
 const lanModal = document.querySelector('.lan-modal');
-const lanOverlay = document.querySelector('.lan-overlay');
-const clModal = document.querySelector('.lan-modal .close-modal');
 
-const openModal = function(){
-    lanModal.classList.remove('hidden');
-    lanOverlay.classList.remove('hidden');
-}
-
-const closeModal = function() {
-    lanModal.classList.add('hidden');
-    lanOverlay.classList.add('hidden');
-}
-
-globeLan.addEventListener('click', openModal);
-clModal.addEventListener('click', closeModal);
-lanOverlay.addEventListener('click', closeModal);
-
-document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && !lanModal.classList.contains('hidden')){
-        closeModal();
+globeLan.addEventListener('click', function(){
+    list.classList.add('hidden');
+    if(lanModal.classList.contains('hidden')) {
+        lanModal.classList.remove('hidden');
+    } else {
+        lanModal.classList.add('hidden');
     }
 });
 

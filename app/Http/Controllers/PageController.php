@@ -29,4 +29,16 @@ class PageController extends Controller
         return view('projects');
     }
     
+    public function blogOne(){
+        return view('strande_unsere_3_lieblingsstrande_an_der_makarska_riviera');
+    }
+    
+    public function blogTwo(){
+        return view('restaurants_unsere_3_lieblingsrestaurants_an_der_makarska_riviera');
+    }
+    
+    public function blogThree(){
+        return view('sehenswurdigkeiten_unsere_3_must_sees_an_der_makarska_riviera');
+    }
+    
 }

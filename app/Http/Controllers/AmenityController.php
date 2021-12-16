@@ -92,7 +92,7 @@ class AmenityController extends Controller
               'icon' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
             $iconname = $request->file('icon')->getClientOriginalName();
-            $icon = $request->file('icon')->storeAs('cate_icons', $iconname, 'public');  
+            $icon = $request->file('icon')->storeAs('amenity_icons', $iconname, 'public');  
             $amenity->icon = $icon;
         }
         $amenity->name = $request->name;

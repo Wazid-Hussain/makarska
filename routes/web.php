@@ -9,14 +9,13 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AmenityController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AmenityController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
-
-use App\Http\Controllers\InstagramDataController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,8 +35,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout')->middleware('admin');
 
     Route::resource('category', CategoryController::class);  
-
-    Route::resource('amenity', AmenityController::class);  
+    
+       Route::resource('amenity', AmenityController::class);  
 });
 /*===== END ADMIN ROUTES ======*/
 
@@ -56,8 +55,12 @@ Route::prefix('customer')->group(function (){
     Route::get('/change-password', [CustomerProfileController::class, 'changePasswordView'])->middleware('customer')->name('customer_change_password');
     Route::post('/change-password', [CustomerProfileController::class, 'changePassword'])->middleware('customer')->name('customer_change_password');    
     
+    
+    
+    
     Route::get('/bookings', [BookingController::class, 'userBooking'])->middleware('customer')->name('customer_booking');  
 });
+    Route::post('/listing/{listing:id}/comments', [CommentController::class, 'store'])->name('post_comment');    
 /*===== END CUSTOMER ROUTES ======*/
 
 /*====== PAGE  ROUTES ==========*/
@@ -69,6 +72,12 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/projects', [PageController::class, 'projects'])->name('projects');
 Route::get('/signup', [PageController::class, 'signup'])->name('signup');
 Route::post('/search', [searchController::class, 'search'])->name('search');
+
+Route::get('/strande_unsere_3_lieblingsstrande_an_der_makarska_riviera', [PageController::class, 'blogOne'])->name('blog-one');
+Route::get('/restaurants_unsere_3_lieblingsrestaurants_an_der_makarska_riviera', [PageController::class, 'blogTwo'])->name('blog-two');
+Route::get('/sehenswurdigkeiten_unsere_3_must_sees_an_der_makarska_riviera', [PageController::class, 'blogThree'])->name('blog-three');
+
+
 /*====== PAGE  ROUTES  End==========*/
 
 
@@ -116,11 +125,10 @@ Route::get('/payment-step-2', [PaymentController::class, 'billingStepPage'])->na
 Route::post('/payment-step-2', [PaymentController::class, 'billingStep'])->name('billingStep');
 Route::get('/payment-step-3', [PaymentController::class, 'paymentStepPage'])->name('paymentStep');
 Route::post('/payment-step-3', [PaymentController::class, 'paymentStep'])->name('paymentStep');
-Route::get('/payment-step-4', [PaymentController::class, 'thankyouStep']);
+Route::get('/payment-step-4', [PaymentController::class, 'thankyouStep'])->name('thankyouStep');
+
+Route::get('/showBooking', [PaymentController::class, 'showBooking'])->name('showBooking');
 /*====== PAYMENT  ROUTES END==========*/
-
-
-Route::get('instagram', [InstagramDataController::class, 'index']);
 
 /*====== DEFAULT AUTH  ROUTES ==========*/
 require __DIR__.'/auth.php';

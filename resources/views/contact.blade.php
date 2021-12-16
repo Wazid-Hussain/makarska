@@ -30,20 +30,21 @@
                                         <div class="list-single-main-media fl-wrap">
                                             <img src="images/all/1.jpg" class="respimg" alt="">
                                         </div>
-                                        <p>Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit risus at metus. In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida.</p>
+                                        <p>Ihr Reisevermittler für die Makarska Riviera. 
+Ob traumhafte Ferienhäuser mit Swimmingpool oder hochwertig eingerichtete Apartments, 
+wir haben die perfekte Unterkunft für Ihren Urlaub an der Makarska Riviera.</p>
                                         <div class="list-author-widget-contacts">
                                             <ul>
-                                                <li><span><i class="fa fa-map-marker"></i> {{__('contact.Adress')}} :</span> <a href="#">USA 27TH Brooklyn NY</a></li>
+                                                <li><span><i class="fa fa-map-marker"></i> {{__('contact.Adress')}} :</span> <a href="#">Saarlandstr. 113, 55411 Bingen am Rhein, Deutschland
+</a></li>
                                                 <li><span><i class="fa fa-phone"></i> Phone :</span> <a href="#">+7(123)987654</a></li>
                                                 <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">AlisaNoory@domain.com</a></li>
-                                                <li><span><i class="fa fa-globe"></i> Website :</span> <a href="#">themeforest.net</a></li>
                                             </ul>
                                         </div>
                                         <div class="list-widget-social">
                                             <ul>
                                                 <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
                                                 <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fa fa-vk"></i></a></li>
                                                 <li><a href="#" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
                                             </ul>
                                         </div>
@@ -51,12 +52,6 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="list-single-main-wrapper fl-wrap">
-                                        <div class="list-single-main-item-title fl-wrap">
-                                            <h3>{{__('contact.Our Location')}}</h3>
-                                        </div>
-                                        <div class="map-container">
-                                            <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
-                                        </div>
                                         <div class="list-single-main-item-title fl-wrap">
                                             <h3>{{__('contact.Get In Touch')}}</h3>
                                         </div>

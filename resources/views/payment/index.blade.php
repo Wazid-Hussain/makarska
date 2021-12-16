@@ -1,11 +1,12 @@
 @include('includes.styles')
 
+<div style="background:url('{{Session::get('listingImage.0')}}'); width:100vw;height:100vh;background-size:cover;"></div>
     <!--booking-modal-wrap -->   
     <div class="booking-modal-wrap" style="display:block">
     <div class="booking-modal-container">
         <div class="booking-modal-content fl-wrap">
             <div class="booking-modal-info">
-                <div class="bg"></div>
+                <div class="bg" style="background:url('{{Session::get('listingImage.0')}}'); width:100vw;height:100vh;background-size:cover;"></div>
                 <div class="overlay" style="background-color:#000"></div>
                 <div class="booking-modal-info_content fl-wrap">
                     <h4></h4>
@@ -66,7 +67,7 @@
                                     </div>
                                     <div class="soc-log fl-wrap">
                                         <p>Already Have an Account ?</p>
-                                        <a href="#" class="facebook-log"><i class="fa fa-sign-in"></i>Login Here</a>
+                                        <a href="/customer/login" class="facebook-log"><i class="fa fa-sign-in"></i>Login Here</a>
                                     </div>
                                     <span class="fw-separator"></span>
                                     <button  type="submit"  class="btn  big-btn  color-bg flat-btn" style="float:right">Payment Step 

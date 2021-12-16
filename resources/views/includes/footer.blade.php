@@ -35,11 +35,11 @@
                 <h3>{{__('footer.Our Last News')}}</h3>
                 <div class="widget-posts fl-wrap">
                   <ul>
-                  <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/" class="act-link">{{__('nav.Home')}}</a></li>
-                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/accommodations">{{__('nav.Accommodation')}}</a></li>
-                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/about">{{__('nav.About us')}}</a></li>
-                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/contact">{{__('nav.Contact')}}</a></li>
-                    <li style="text-align: left;font-size: 18px;font-weight: 700;"><a href="/projects">{{__('nav.J Projects')}}</a></li>
+                  <li style="text-align: left;font-size: 16px;font-weight: 700;"><a href="/" class="act-link">{{__('nav.Home')}}</a></li>
+                    <li style="text-align: left;font-size: 16px;font-weight: 700;"><a href="/accommodations">{{__('nav.Accommodation')}}</a></li>
+                    <li style="text-align: left;font-size: 16px;font-weight: 700;"><a href="/about">{{__('nav.About us')}}</a></li>
+                    <li style="text-align: left;font-size: 16px;font-weight: 700;"><a href="/contact">{{__('nav.Contact')}}</a></li>
+                    <li style="text-align: left;font-size: 16px;font-weight: 700;"><a href="/projects">{{__('nav.J Projects')}}</a></li>
                     
                   </ul>
                 </div>
@@ -49,21 +49,50 @@
               <div class="footer-widget fl-wrap">
                 <h3>{{__('footer.Our Instagram')}}</h3>
                 <div class="container insta-widget">
-
                   <div class="row">
-                   {{-- @foreach($images as $key => $image)
                     <div class="col-md-6 img-con">
                       <img
-                        src="{{asset('/insta/images/'.$key.'.png')}}"
+                        src="images/pexels-valeria-boltneva-2400.jpg"
                         alt="image"
                       />
                     </div>
-                    @endforeach --}}
-
+                    <div class="col-md-6 img-con">
+                      <img
+                        src="images/pexels-valeria-boltneva-2400.jpg"
+                        alt="image"
+                      />
+                    </div>
                   </div>
-
+                  <div class="row">
+                    <div class="col-md-6 img-con">
+                      <img
+                        src="images/pexels-valeria-boltneva-2400.jpg"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="col-md-6 img-con">
+                      <img
+                        src="images/pexels-valeria-boltneva-2400.jpg"
+                        alt="image"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 img-con">
+                      <img
+                        src="images/pexels-valeria-boltneva-2400.jpg"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="col-md-6 img-con">
+                      <img
+                        src="images/pexels-valeria-boltneva-2400.jpg"
+                        alt="image"
+                      />
+                    </div>
+                  </div>
                 </div>
-
+               
               </div>
             </div>
             <div class="col-md-3">
@@ -78,16 +107,7 @@
                     Lorem Ipsum has been the industry’s standard dummy text ever
                   </p>
                 </div>
-                <div class="footer-widget fl-wrap">
-                  <div class="footer-menu fl-wrap">
-                    <ul>
-                      <li><a href="#">{{__('footer.Home')}}</a></li>
-                      <li><a href="#">Blog</a></li>
-                      <li><a href="#">{{__('footer.Listing')}}</a></li>
-                      <li><a href="#">{{__('footer.Contacts')}}</a></li>
-                    </ul>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
@@ -109,22 +129,14 @@
                 <div class="footer-social">
                   <ul>
                     <li>
-                      <a href="#" target="_blank"
+                      <a href="https://www.facebook.com/makarskaexklusiv/" target="_blank"
                         ><i class="fa fa-facebook-official"></i
                       ></a>
                     </li>
                     <li>
-                      <a href="#" target="_blank"
-                        ><i class="fa fa-twitter"></i
+                      <a href="https://www.instagram.com/makarska_exklusiv/" target="_blank"
+                        ><i class="fa fa-instagram"></i
                       ></a>
-                    </li>
-                    <li>
-                      <a href="#" target="_blank"
-                        ><i class="fa fa-chrome"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" target="_blank"><i class="fa fa-vk"></i></a>
                     </li>
                     <li>
                       <a href="#" target="_blank"

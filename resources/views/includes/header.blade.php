@@ -3,7 +3,7 @@
           <div class="header-inner">
             <div class="header-inner-left">
               <div class="logo-holder">
-                <a href="{{route('index')}}"><img src="{{asset('images/logo.png')}}" alt=""></a>
+                <a href="{{route('index')}}"><img src="{{asset('images/logo.png')}}" alt="fg"></a>
               </div>
             </div>
             <div class="header-inner-center">
@@ -23,6 +23,19 @@
             <div class="header-inner-right">
               <div class="web">
                 <i class="fa fa-globe languages" style="font-size:24px"></i>
+                <div class="lan-modal hidden">
+                    <ul>
+                        
+                        @foreach (Config::get('languages') as $lang => $language)
+                            <li>
+                                <a href="{{ route('lang.switch', $lang) }}"> 
+                                    <span>{{$language}}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                        
+                    </ul>
+                </div>
               </div>
               <div class="bar-icon-group">
                 <div class="bars">
@@ -74,21 +87,4 @@
             </div>
           </div>
         </header>
-        
-      <div class="lan-modal hidden">
-        <button class="close-modal">&times;</button>
-        <h2>Choose a language and region</h2>
-        <ul>
-            
-            @foreach (Config::get('languages') as $lang => $language)
-                <li>
-                    <a href="{{ route('lang.switch', $lang) }}"> 
-                        <span>{{$language}}</span>
-                    </a>
-                </li>
-            @endforeach
-            
-        </ul>
-      </div>
-      <div class="lan-overlay hidden"></div>
         <!--  header end -->

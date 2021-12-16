@@ -30,8 +30,13 @@ class BookingController extends Controller
         
         Session::push('formdata', $request->all());
         
+        $listing = Listing::where('id', Session('formdata.0.listing_id'))->first();
+        
+        $listingImage = asset('/storage/'.$listing->images[0]->path.'/'.$listing->images[0]->image_name);
+        
+        Session::push('listingImage', $listingImage);
+        
         if(Auth::guard('customer')->check()){
-            
             // $all['user_id'] = Auth::guard('customer')->user()->id;
             // $all['listing_id'] = Session('formdata.0.listing_id');
             // $all['start_from'] = date('Y-m-d H:i:s' , strtotime(Session('formdata.0.start_from')));
@@ -46,13 +51,9 @@ class BookingController extends Controller
             // $listing = Booking::create($all);
             
             // Session::forget('formdata');
-
-        
-            return route('billingStep');
-        
+            return view('payment.billing');
         }
         else{
-
             // $listing = Listing::where('id', $request->listing_id)->first();
             return view('payment.index');
         }

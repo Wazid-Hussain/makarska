@@ -1,17 +1,20 @@
 @include('includes.styles')
+
+<div style="background:url('{{Session::get('listingImage.0')}}'); width:100vw;height:100vh;background-size:cover;"></div>
               <!--booking-modal-wrap -->   
               <div class="booking-modal-wrap" style="display:block">
                 <div class="booking-modal-container">
                     <div class="booking-modal-content fl-wrap">
                         <div class="booking-modal-info">
-                            <div class="bg"  data-bg="images/bg/1.jpg" ></div>
+                           <div class="bg" style="background:url('{{Session::get('listingImage.0')}}'); width:100vw;height:100vh;background-size:cover;"></div>
                             <div class="overlay"></div>
                             <div class="booking-modal-info_content fl-wrap">
                                 <h4>Luxury Hotel Spa</h4>
-                                <ul>
-                                    <li>Date : <span>05.05.2020</span></li>
-                                    <li>Persons : <span>2</span></li>
-                                    <li>Price : <span>$120</span> </li>
+                                 <ul>
+                                    <li>From : <span>{{Session('formdata.0.start_from')}}</span></li>
+                                    <li>To : <span>{{Session('formdata.0.end_to')}}</span></li>
+                                    <li>Persons : <span>{{Session('formdata.0.adults')}}</span></li>
+                                    <li>Price : <span>${{Session('formdata.0.total_price')}}</span> </li>
                                 </ul>
                             </div>
                         </div>

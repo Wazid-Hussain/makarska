@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
 use App\Models\Amenity;
+use App\Models\Comment;
 
 class Listing extends Model
 {
@@ -17,16 +18,21 @@ class Listing extends Model
         'title',
         'keywords',
         'address',
-        // 'street',
-        // 'city',
-        // 'zipcode',
+        'rooms',
+        'beds',
+        'bathrooms',
         'description',
-        // 'amenities',
+        'kitchens',
+        'guests',
         'price',
     ];
 
     public function images(){
        return $this->hasMany('\App\Models\ListingImage','listing_id');
+    }
+    
+    public function comments(){
+       return $this->hasMany(Comment::class);
     }
 
     public function amenities(){
