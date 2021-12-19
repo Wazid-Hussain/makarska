@@ -91,6 +91,15 @@
                             </div>
                         </div>
                         
+                        {{-- Calendar Section --}}
+                        <div class="list-single-main-item fl-wrap">
+                            <div id="inline-calendar" class="list-single-main-item-title fl-wrap">
+                                <h3>Choose date</h3>
+                            </div>
+                            <input type="text" name="" id="hidden-date-range">
+                        </div>
+                        {{-- Calendar Section End --}}
+
                         <div class="list-single-main-item fl-wrap" id="sec3">
                             <div class="list-single-main-item-title fl-wrap">
                                 <h3>Gallery - Photos</h3>
@@ -192,16 +201,7 @@
                             </div>
                             <!-- inline-facts end -->                            
                         </div>
-                        <!-- list-single-main-item end --> 
-                        
-                        {{-- Calendar Section --}}
-                        <div class="list-single-main-item fl-wrap">
-                            <div class="list-single-main-item-title fl-wrap">
-                                <h3>Choose date</h3>
-                            </div>
-                            <input type="date" name="" id="">
-                        </div>
-                        {{-- Calendar Section End --}}
+                        <!-- list-single-main-item end -->               
                         
                         
                         <!-- list-single-main-item -->   
@@ -610,8 +610,10 @@
 @endsection
 @push('script')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
+    <script type="text/javascript" src="{{asset('/js/inlinedaterangepicker.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/inline-daterangepicker.css')}}" />
     <script>
         $(document).ready(function(){
             //$('#check-in').daterangepicker();
@@ -633,9 +635,48 @@
             var children = parseInt($('#children').val());
             var bookedDates = @json($bookedDates);
             
+            function hiddenDateRange(){
+                $('#hidden-date-range').daterangepicker({
+                    opens: 'center',
+                    parentEl: '#inline-calendar',
+                    alwaysShowCalendars: true,
+                    autoApply :true,
+                    inline: true,
+                    startDate: startDate,
+                    minDate: moment().format("MM/DD/YYYY"),
+                    endDate: endDate,
+                    isInvalidDate: function(arg){
+
+                        // Prepare the date comparision
+                        var thisMonth = arg._d.getMonth()+1;   // Months are 0 based
+                        if (thisMonth<10){
+                            thisMonth = "0"+thisMonth; // Leading 0
+                        }
+                        var thisDate = arg._d.getDate();
+                        if (thisDate<10){
+                            thisDate = "0"+thisDate; // Leading 0
+                        }
+                        var thisYear = arg._d.getYear()+1900;   // Years are 1900 based
+
+                        var thisCompare = thisMonth +"/"+ thisDate +"/"+ thisYear;
+
+                        if($.inArray(thisCompare,bookedDates)!=-1){
+                            return true;
+                        }
+                    }
+                }, function(start, end, label) {
+                    startDate = start.format("MM/DD/YYYY");
+                    endDate = end.format("MM/DD/YYYY");
+                    
+                    setInputDates();
+                    showPriceWidget();
+                });
+            }
+
             $(function() {
-                $('.check-in').daterangepicker({
+                $('#check-in').daterangepicker({
                     opens: 'left',
+                    inline: false,
                     startDate: moment().format("MM/DD/YYYY"),
                     minDate: moment().format("MM/DD/YYYY"),
                     endDate: moment().add(1, 'days').format("MM/DD/YYYY"),
@@ -653,7 +694,6 @@
                         var thisYear = arg._d.getYear()+1900;   // Years are 1900 based
 
                         var thisCompare = thisMonth +"/"+ thisDate +"/"+ thisYear;
-                        console.log(thisCompare);
 
                         if($.inArray(thisCompare,bookedDates)!=-1){
                             return true;
@@ -661,9 +701,28 @@
                     }
                 }, function(start, end, label) {
                     startDate = start.format("MM/DD/YYYY");
-                    endDate = end.format("MM/DD/YYYY");
+                    endDate = end.format("MM/DD/YYYY");                    
                     setInputDates();
                     showPriceWidget();
+                });                
+                
+                hiddenDateRange();
+
+                $('#check-in').on('apply.daterangepicker', function(ev, picker) {
+                    startDate = picker.startDate.format("MM/DD/YYYY");
+                    endDate = picker.endDate.format("MM/DD/YYYY");
+                    //do something, like clearing an input
+                    $('#hidden-date-range').data('daterangepicker').setStartDate(picker.startDate.format("MM/DD/YYYY"));
+                    $('#hidden-date-range').data('daterangepicker').setEndDate(picker.endDate.format("MM/DD/YYYY"));
+                    hiddenDateRange();
+                });
+
+                $('#hidden-date-range').on('apply.daterangepicker', function(ev, picker) {
+                    //do something, like clearing an input
+                    startDate = picker.startDate.format("MM/DD/YYYY");
+                    endDate = picker.endDate.format("MM/DD/YYYY");
+                    $('#check-in').data('daterangepicker').setEndDate(picker.endDate.format("MM/DD/YYYY"));
+                    $('#check-in').data('daterangepicker').setStartDate(picker.startDate.format("MM/DD/YYYY"));
                 });
             });
 
@@ -671,7 +730,6 @@
                 personCount = adults +  children;
                 price = parseInt($('#price').data('price'));
                 nightsCount = parseInt(countNights());
-                console.log(price,nightsCount,price * nightsCount * personCount);
                 return price * nightsCount * personCount;
             }
 
